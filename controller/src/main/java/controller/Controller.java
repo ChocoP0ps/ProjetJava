@@ -78,7 +78,9 @@ public class Controller implements IController {
 			case Indonesia:
 				this.model.loadMessage("ID");
 				break;
-
+			case Exit :
+				this.view.closeWindow();
+				break;
 			default:
 				break;
 		}

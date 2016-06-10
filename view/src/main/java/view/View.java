@@ -47,6 +47,8 @@ public class View implements IView, Runnable {
 				return ControllerOrder.Deutsch;
 			case KeyEvent.VK_I:
 				return ControllerOrder.Indonesia;
+			case KeyEvent.VK_ESCAPE :
+				return ControllerOrder.Exit;
 			default:
 				return ControllerOrder.English;
 		}
@@ -68,6 +70,10 @@ public class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
+	}
+	
+	public void closeWindow(){
+		this.viewFrame.dispose();
 	}
 
 	/**
