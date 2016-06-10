@@ -1,8 +1,9 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -127,18 +128,14 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *          the model
 	 */
 	private void buildViewFrame(final IModel model) {
-		this.setUndecorated(true);
-		this.setAlwaysOnTop(true);
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
+		this.setSize(1280,800);
 		this.setLocationRelativeTo(null);
-		this.setUndecorated(true);
-	    this.setSize(this.getToolkit().getScreenSize());
-	    this.setLocationRelativeTo(null);
-	    this.validate();
+		this.getContentPane().setBackground(Color.blue);
 	}
 
 	/**

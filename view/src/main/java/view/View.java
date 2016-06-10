@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
@@ -70,6 +72,7 @@ public class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
+		this.viewFrame.getContentPane().setBackground(Color.blue);
 	}
 	
 	public void closeWindow(){

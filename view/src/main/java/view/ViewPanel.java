@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
@@ -26,6 +28,7 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
+		this.setBackground(Color.blue);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
 
