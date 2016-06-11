@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
@@ -19,6 +19,8 @@ public class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+
+	
 
 	/**
 	 * Instantiates a new view.
@@ -40,18 +42,18 @@ public class View implements IView, Runnable {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
+			case KeyEvent.VK_LEFT:
+				return ControllerOrder.Left;
+			case KeyEvent.VK_RIGHT:
+				return ControllerOrder.Right;
+			case KeyEvent.VK_UP:
+				return ControllerOrder.Up;
+			case KeyEvent.VK_DOWN:
+				return ControllerOrder.Down;
 			case KeyEvent.VK_ESCAPE :
 				return ControllerOrder.Exit;
 			default:
-				return ControllerOrder.English;
+				return ControllerOrder.Nothing;
 		}
 	}
 
@@ -71,7 +73,6 @@ public class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
-		this.viewFrame.getContentPane().setBackground(Color.blue);
 	}
 	
 	public void closeWindow(){

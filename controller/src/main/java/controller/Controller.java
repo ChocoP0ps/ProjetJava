@@ -67,22 +67,22 @@ public class Controller implements IController {
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
-			case English:
-				this.model.loadMap(1);
+			case Down:
+				this.model.Down(this.model.getLorann());
 				break;
-			case Francais:
-				this.model.loadMap(1);
+			case Up:
+				this.model.Up(this.model.getLorann());
 				break;
-			case Deutsch:
-				this.model.loadMap(1);
+			case Right:
+				this.model.Right(this.model.getLorann());
 				break;
-			case Indonesia:
-				this.model.loadMap(1);
+			case Left:
+				this.model.Left(this.model.getLorann());
 				break;
 			case Exit :
 				this.view.closeWindow();
 				break;
-			default:
+			case Nothing:
 				break;
 		}
 	}

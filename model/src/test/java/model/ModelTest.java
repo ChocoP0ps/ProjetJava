@@ -64,7 +64,7 @@ public class ModelTest {
 	 */
 	@Test
 	public void testGetMap() {
-		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnnnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbonnbnvnnnnnnnnvnbnnobbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbonnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbnnvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbvnnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class ModelTest {
 	@Test
 	public void testGetMapString() {
 		this.model.loadMap(1);
-		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnnnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbonnbnvnnnnnnnnvnbnnobbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbonnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbnnvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbvnnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
 	}
 
 }

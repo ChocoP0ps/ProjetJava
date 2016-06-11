@@ -15,6 +15,7 @@ public class Model extends Observable implements IModel {
 
 	private String map;
 	private ArrayList<Element> elementsList = new ArrayList<Element>();
+	private Hero lorann;
 	
 	public Model() {
 		this.loadMap(1);
@@ -61,8 +62,41 @@ public class Model extends Observable implements IModel {
 				case 'n' :
 					this.elementsList.set(x+(20*y),new Empty());
 					break;
+				case 's' :
+					this.elementsList.set(x+(20*y),lorann = new Hero());
+					lorann.setPosX(x);
+					lorann.setPosY(y);
+					break;
 				}
 			}
+		}
+	}
+
+	public Hero getLorann() {
+		return lorann;
+	}
+	
+	public void Up(Hero lorann){
+		if(this.elementsList.get(lorann.getPosX() + (lorann.getPosY()-1)*20).getPENETRABLE() == true){
+			lorann.setPosY(lorann.getPosY() - 1);
+		}
+	}
+	
+	public void Down(Hero lorann){
+		if(this.elementsList.get(lorann.getPosX() + (lorann.getPosY()+1)*20).getPENETRABLE() == true){
+			lorann.setPosY(lorann.getPosY() + 1);
+		}
+	}
+	
+	public void Left(Hero lorann){
+		if(this.elementsList.get(lorann.getPosX()-1 + (lorann.getPosY())*20).getPENETRABLE() == true){
+			lorann.setPosY(lorann.getPosX() - 1);
+		}
+	}
+	
+	public void Right(Hero lorann){
+		if(this.elementsList.get(lorann.getPosX()+1 + (lorann.getPosY())*20).getPENETRABLE() == true){
+			lorann.setPosY(lorann.getPosX() + 1);
 		}
 	}
 

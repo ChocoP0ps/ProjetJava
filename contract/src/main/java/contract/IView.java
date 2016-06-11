@@ -1,5 +1,6 @@
 package contract;
 
+
 /**
  * The Interface IView.
  *

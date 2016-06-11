@@ -97,6 +97,13 @@ class ViewPanel extends JPanel implements Observer {
 						e.printStackTrace();
 					}
 					break;
+				case "Hero" :
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/lorann_b.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
 				case "" :
 					break;
 				}

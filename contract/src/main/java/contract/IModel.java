@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import elements.Element;
+import elements.Hero;
 
 /**
  * The Interface IModel.
@@ -35,4 +36,14 @@ public interface IModel {
 	Observable getObservable();
 
 	public ArrayList<Element> getElementsList();
+	
+	public Hero getLorann();
+
+	void Right(Hero lorann);
+
+	void Left(Hero lorann);
+
+	void Up(Hero lorann);
+
+	void Down(Hero lorann);
 }

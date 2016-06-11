@@ -17,7 +17,7 @@ import contract.IModel;
  *
  * @author Jean-Aymeric Diet
  */
-class ViewFrame extends JFrame implements KeyListener {
+public class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
 	private IModel						model;
@@ -162,6 +162,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
+		System.out.println("Presse");
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 	}
 

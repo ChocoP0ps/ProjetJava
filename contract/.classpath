@@ -23,5 +23,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="/elements"/>
+	<classpathentry kind="src" path="/view"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

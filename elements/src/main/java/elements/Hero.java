@@ -1,8 +1,10 @@
 package elements;
 
-public class Door extends Element{
-	private String TYPE = "Door";
+public class Hero extends Element{
+	private String TYPE = "Hero";
 	private boolean PENETRABLE = true;
+	private int PosX;
+	private int PosY;
 
 
 	public boolean getPENETRABLE() {
@@ -19,5 +21,21 @@ public class Door extends Element{
 
 	public void setTYPE(String type) {
 		TYPE = type;
+	}
+	
+	public int getPosX() {
+		return PosX;
+	}
+	
+	public void setPosX(int posX) {
+		PosX = posX;
+	}
+	
+	public int getPosY() {
+		return PosY;
+	}
+	
+	public void setPosY(int posY) {
+		PosY = posY;
 	}
 }
