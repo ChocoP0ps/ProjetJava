@@ -37,7 +37,6 @@ public class DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("ferme");
 	}
 
 	public String getMap(int level){
