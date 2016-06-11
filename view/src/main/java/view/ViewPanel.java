@@ -2,15 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import elements.Element;
 
 /**
  * The Class ViewPanel.
@@ -62,6 +63,46 @@ class ViewPanel extends JPanel implements Observer {
 	public void update(final Observable arg0, final Object arg1) {
 		this.repaint();
 	}
+	
+	public void printMap(Graphics graphics){
+		ArrayList<Element> elementsList = this.getViewFrame().getModel().getElementsList();
+		for(int y = 0; y<12; y++){
+			for (int x =0; x<20; x++){
+				switch(elementsList.get(x+(20*y)).getTYPE()){
+				case "Bone Wall" :
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/bone.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "Horizontal Wall" :
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/horizontal_bone.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "Vertical Wall" :
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/vertical_bone.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "Door" :
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/gate_open.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case "" :
+					break;
+				}
+			}
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -70,47 +111,10 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		String map = this.getViewFrame().getModel().getMap();
-		char[] elements = map.toCharArray();
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.setColor(Color.red);
-		for(int y = 0; y<12; y++){
-			for (int x =0; x<20; x++){
-				switch(elements[x+(20*y)]){
-				case 'b' :
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/bone.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 'h' :
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/horizontal_bone.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 'v' :
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/vertical_bone.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 'o' :
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/gate_open.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 'n' :
-					break;
-				}
-			}
-		}
+		this.printMap(graphics);
 	}
 }

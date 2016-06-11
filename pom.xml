@@ -15,6 +15,7 @@
 		<module>controller</module>
 		<module>contract</module>
 		<module>model</module>
+		<module>elements</module>
 	</modules>
 	<dependencies>
 		<dependency>
