@@ -63,23 +63,17 @@ public class ModelTest {
 	 * Test method for {@link model.Model#getMessage()}.
 	 */
 	@Test
-	public void testGetMessage() {
-		Assert.assertEquals("", this.model.getMessage());
+	public void testGetMap() {
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnnnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbonnbnvnnnnnnnnvnbnnobbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbonnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
 	}
 
 	/**
 	 * Test method for {@link model.Model#loadMessage(java.lang.String)}.
 	 */
 	@Test
-	public void testGetMessageString() {
-		this.model.loadMessage("GB");
-		Assert.assertEquals("Hello world", this.model.getMessage());
-		this.model.loadMessage("FR");
-		Assert.assertEquals("Bonjour le monde", this.model.getMessage());
-		this.model.loadMessage("DE");
-		Assert.assertEquals("Hallo Welt", this.model.getMessage());
-		this.model.loadMessage("ID");
-		Assert.assertEquals("Salamat pagi dunia", this.model.getMessage());
+	public void testGetMapString() {
+		this.model.loadMap(1);
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnnnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbonnbnvnnnnnnnnvnbnnobbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbonnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
 	}
 
 }

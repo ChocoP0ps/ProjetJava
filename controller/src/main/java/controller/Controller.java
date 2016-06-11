@@ -28,6 +28,7 @@ public class Controller implements IController {
 	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
+		this.model.loadMap(1);
 	}
 
 	/*
@@ -36,7 +37,7 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
 	}
 
 	/**
@@ -67,16 +68,16 @@ public class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case English:
-				this.model.loadMessage("GB");
+				this.model.loadMap(1);
 				break;
 			case Francais:
-				this.model.loadMessage("FR");
+				this.model.loadMap(1);
 				break;
 			case Deutsch:
-				this.model.loadMessage("DE");
+				this.model.loadMap(1);
 				break;
 			case Indonesia:
-				this.model.loadMessage("ID");
+				this.model.loadMap(1);
 				break;
 			case Exit :
 				this.view.closeWindow();

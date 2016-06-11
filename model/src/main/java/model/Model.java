@@ -1,8 +1,6 @@
 package model;
 
-import java.sql.SQLException;
 import java.util.Observable;
-
 import contract.IModel;
 
 /**
@@ -12,56 +10,29 @@ import contract.IModel;
  */
 public class Model extends Observable implements IModel {
 
-	/** The message. */
-	private String message;
-
-	/**
-	 * Instantiates a new model.
-	 */
+	private String map;
+	
 	public Model() {
-		this.message = "";
+		this.loadMap(1);;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage()
-	 */
-	public String getMessage() {
-		return this.message;
+	
+	public String getMap() {
+		return this.map;
 	}
-
-	/**
-	 * Sets the message.
-	 *
-	 * @param message
-	 *          the new message
-	 */
-	private void setMessage(final String message) {
-		this.message = message;
+	
+	private void setMap(final String map) {
+		this.map = map;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage(java.lang.String)
-	 */
-	public void loadMessage(final String key) {
-		try {
-			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setMessage(daoHelloWorld.find(key).getMessage());
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
+	public void loadMap(int level) {
+		final DAO dao = new DAO();
+		dao.open();
+		this.setMap(dao.getMap(level));
+		dao.close();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getObservable()
-	 */
 	public Observable getObservable() {
 		return this;
 	}
