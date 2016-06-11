@@ -1,11 +1,9 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JPanel;
 
 /**
@@ -28,7 +26,6 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
-		this.setBackground(Color.blue);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
 
@@ -68,6 +65,9 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		graphics.setColor(Color.BLACK);
+		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+		graphics.setColor(Color.red);
 		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
 	}
 }
