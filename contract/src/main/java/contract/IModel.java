@@ -2,7 +2,6 @@ package contract;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import elements.Element;
 
 /**
  * The Interface IModel.
@@ -32,8 +31,8 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
-
-	ArrayList<Element> getElementsList();
+	
+	public ArrayList<IElement> getElementsList();
 
 	void Down();
 

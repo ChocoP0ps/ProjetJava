@@ -11,7 +11,7 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import elements.Element;
+import contract.IElement;
 
 /**
  * The Class ViewPanel.
@@ -65,7 +65,7 @@ class ViewPanel extends JPanel implements Observer {
 	}
 	
 	public void printMap(Graphics graphics){
-		ArrayList<Element> elementsList = this.getViewFrame().getModel().getElementsList();
+		ArrayList<IElement> elementsList = this.getViewFrame().getModel().getElementsList();
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elementsList.get(x+(20*y)).getTYPE()){

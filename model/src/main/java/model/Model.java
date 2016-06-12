@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import contract.IElement;
 import contract.IModel;
 import elements.*;
 
@@ -14,7 +15,7 @@ import elements.*;
 public class Model extends Observable implements IModel {
 
 	private String map;
-	private ArrayList<Element> elementsList = new ArrayList<Element>();
+	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
 	private Hero lorann;
 	
 	public Model() {
@@ -100,7 +101,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
-	public ArrayList<Element> getElementsList() {
+	public ArrayList<IElement> getElementsList() {
 		return elementsList;
 	}
 	
