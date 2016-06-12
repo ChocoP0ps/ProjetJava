@@ -1,7 +1,7 @@
 package elements;
 
 public abstract class Element {
-	private String TYPE = "";
+	private int TYPE;
 	private boolean PENETRABLE;
 
 	public boolean getPENETRABLE() {
@@ -12,11 +12,11 @@ public abstract class Element {
 		PENETRABLE = penetrable;
 	}
 
-	public String getTYPE() {
+	public int getTYPE() {
 		return TYPE;
 	}
 
-	public void setTYPE(String type) {
+	public void setTYPE(int type) {
 		TYPE = type;
 	}
 }

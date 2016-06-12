@@ -1,7 +1,7 @@
 package elements;
 
 public class BoneWall extends Wall{
-	private String TYPE = "Bone Wall";
+	private int TYPE = 1;
 	private boolean PENETRABLE = false;
 	
 
@@ -13,11 +13,11 @@ public class BoneWall extends Wall{
 		PENETRABLE = penetrable;
 	}
 
-	public String getTYPE() {
+	public int getTYPE() {
 		return TYPE;
 	}
 
-	public void setTYPE(String type) {
+	public void setTYPE(int type) {
 		TYPE = type;
 	}
 }

@@ -1,7 +1,7 @@
 package elements;
 
 public class Door extends Element{
-	private String TYPE = "Door";
+	private int TYPE = 4;
 	private boolean PENETRABLE = true;
 
 
@@ -13,11 +13,11 @@ public class Door extends Element{
 		PENETRABLE = penetrable;
 	}
 
-	public String getTYPE() {
+	public int getTYPE() {
 		return TYPE;
 	}
 
-	public void setTYPE(String type) {
+	public void setTYPE(int type) {
 		TYPE = type;
 	}
 }

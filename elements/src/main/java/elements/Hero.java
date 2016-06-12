@@ -1,7 +1,7 @@
 package elements;
 
 public class Hero extends Element{
-	private String TYPE = "Hero";
+	private int TYPE = 5;
 	private boolean PENETRABLE = true;
 	private int PosX;
 	private int PosY;
@@ -15,11 +15,11 @@ public class Hero extends Element{
 		PENETRABLE = penetrable;
 	}
 
-	public String getTYPE() {
+	public int getTYPE() {
 		return TYPE;
 	}
 
-	public void setTYPE(String type) {
+	public void setTYPE(int type) {
 		TYPE = type;
 	}
 	

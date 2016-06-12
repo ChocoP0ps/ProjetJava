@@ -1,7 +1,7 @@
 package elements;
 
 public class Empty extends Element{
-	private String TYPE = "Empty";
+	private int TYPE = 0;
 	private boolean PENETRABLE = true;
 	
 
@@ -13,11 +13,11 @@ public class Empty extends Element{
 		PENETRABLE = penetrable;
 	}
 
-	public String getTYPE() {
+	public int getTYPE() {
 		return TYPE;
 	}
 
-	public void setTYPE(String type) {
+	public void setTYPE(int type) {
 		TYPE = type;
 	}
 	

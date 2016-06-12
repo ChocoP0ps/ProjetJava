@@ -1,7 +1,7 @@
 package elements;
 
 public class VerticalWall extends Wall{
-	private String TYPE = "Vertical Wall";
+	private int TYPE = 3;
 	private boolean PENETRABLE = false;
 	
 
@@ -13,11 +13,11 @@ public class VerticalWall extends Wall{
 		PENETRABLE = penetrable;
 	}
 
-	public String getTYPE() {
+	public int getTYPE() {
 		return TYPE;
 	}
 
-	public void setTYPE(String type) {
+	public void setTYPE(int type) {
 		TYPE = type;
 	}
 }

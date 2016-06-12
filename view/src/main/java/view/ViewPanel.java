@@ -69,42 +69,42 @@ class ViewPanel extends JPanel implements Observer {
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elementsList.get(x+(20*y)).getTYPE()){
-				case "Bone Wall" :
+				case 1 :
 					try {
 						graphics.drawImage(ImageIO.read(new File("sprite/bone.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					break;
-				case "Horizontal Wall" :
+				case 2 :
 					try {
 						graphics.drawImage(ImageIO.read(new File("sprite/horizontal_bone.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					break;
-				case "Vertical Wall" :
+				case 3 :
 					try {
 						graphics.drawImage(ImageIO.read(new File("sprite/vertical_bone.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					break;
-				case "Door" :
+				case 4 :
 					try {
 						graphics.drawImage(ImageIO.read(new File("sprite/gate_open.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					break;
-				case "Hero" :
+				case 5 :
 					try {
 						graphics.drawImage(ImageIO.read(new File("sprite/lorann_b.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					break;
-				case "" :
+				case 0 :
 					break;
 				}
 			}
