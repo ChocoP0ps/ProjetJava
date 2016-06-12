@@ -85,6 +85,7 @@ public class Controller implements IController {
 			case Nothing:
 				break;
 		}
+		this.model.modifyArray(this.model.getLorann());
 	}
 
 }

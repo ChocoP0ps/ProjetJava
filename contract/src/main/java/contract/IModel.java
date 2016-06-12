@@ -46,4 +46,6 @@ public interface IModel {
 	void Up(Hero lorann);
 
 	void Down(Hero lorann);
+
+	void modifyArray(Hero lorann);
 }

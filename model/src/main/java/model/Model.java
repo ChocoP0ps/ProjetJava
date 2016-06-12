@@ -90,18 +90,49 @@ public class Model extends Observable implements IModel {
 	
 	public void Left(Hero lorann){
 		if(this.elementsList.get(lorann.getPosX()-1 + (lorann.getPosY())*20).getPENETRABLE() == true){
-			lorann.setPosY(lorann.getPosX() - 1);
+			lorann.setPosX(lorann.getPosX() - 1);
 		}
 	}
 	
 	public void Right(Hero lorann){
 		if(this.elementsList.get(lorann.getPosX()+1 + (lorann.getPosY())*20).getPENETRABLE() == true){
-			lorann.setPosY(lorann.getPosX() + 1);
+			lorann.setPosX(lorann.getPosX() + 1);
 		}
 	}
 
 	public ArrayList<Element> getElementsList() {
 		return elementsList;
+	}
+	
+	public void modifyArray(Hero lorann){
+		char[] elements = this.getMap().toCharArray();
+		for(int y = 0; y<12; y++){
+			for (int x =0; x<20; x++){
+				switch(elements[x+(20*y)]){
+				case 'b' :
+					this.elementsList.set(x+(20*y),new BoneWall());
+					break;
+				case 'h' :
+					this.elementsList.set(x+(20*y),new HorizontalWall());
+					break;
+				case 'v' :
+					this.elementsList.set(x+(20*y),new VerticalWall());
+					break;
+				case 'd' :
+					this.elementsList.set(x+(20*y),new Door());
+					break;
+				case 'n' :
+					this.elementsList.set(x+(20*y),new Empty());
+					break;
+				case 's' :
+					this.elementsList.set(x+(20*y),new Empty());
+					break;
+				}
+				if(x==lorann.getPosX() && y == lorann.getPosY()){
+					this.elementsList.set(x+(20*y),lorann = new Hero());
+				}
+			}
+		}
 	}
 
 	public Observable getObservable() {

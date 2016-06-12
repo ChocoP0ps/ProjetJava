@@ -24,6 +24,8 @@ public class ViewFrame extends JFrame implements KeyListener {
 
 	/** The controller. */
 	private IController				controller;
+	
+	private ViewPanel viewPanel;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
 
@@ -131,8 +133,8 @@ public class ViewFrame extends JFrame implements KeyListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.addKeyListener(this);
-		this.setContentPane(new ViewPanel(this));
-		this.setSize(1280,800);
+		this.setContentPane(viewPanel = new ViewPanel(this));
+		this.setSize(1280,768);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setBackground(Color.blue);
 	}
@@ -162,8 +164,8 @@ public class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
-		System.out.println("Presse");
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+		this.getContentPane().update(this.getGraphics());
 	}
 
 	/*
