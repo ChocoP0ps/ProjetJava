@@ -68,16 +68,16 @@ public class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case Down:
-				this.model.Down(this.model.getLorann());
+				this.model.Down();
 				break;
 			case Up:
-				this.model.Up(this.model.getLorann());
+				this.model.Up();
 				break;
 			case Right:
-				this.model.Right(this.model.getLorann());
+				this.model.Right();
 				break;
 			case Left:
-				this.model.Left(this.model.getLorann());
+				this.model.Left();
 				break;
 			case Exit :
 				this.view.closeWindow();
@@ -85,7 +85,7 @@ public class Controller implements IController {
 			case Nothing:
 				break;
 		}
-		this.model.modifyArray(this.model.getLorann());
+		this.model.modifyArray();
 	}
 
 }

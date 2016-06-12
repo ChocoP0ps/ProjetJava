@@ -63,9 +63,9 @@ public class Model extends Observable implements IModel {
 					this.elementsList.set(x+(20*y),new Empty());
 					break;
 				case 's' :
-					this.elementsList.set(x+(20*y),lorann = new Hero());
-					lorann.setPosX(x);
-					lorann.setPosY(y);
+					this.elementsList.set(x+(20*y),this.lorann = new Hero());
+					this.lorann.setPosX(x);
+					this.lorann.setPosY(y);
 					break;
 				}
 			}
@@ -76,27 +76,27 @@ public class Model extends Observable implements IModel {
 		return lorann;
 	}
 	
-	public void Up(Hero lorann){
-		if(this.elementsList.get(lorann.getPosX() + (lorann.getPosY()-1)*20).getPENETRABLE() == true){
-			lorann.setPosY(lorann.getPosY() - 1);
+	public void Up(){
+		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getPENETRABLE() == true){
+			this.lorann.setPosY(this.lorann.getPosY() - 1);
 		}
 	}
 	
-	public void Down(Hero lorann){
-		if(this.elementsList.get(lorann.getPosX() + (lorann.getPosY()+1)*20).getPENETRABLE() == true){
-			lorann.setPosY(lorann.getPosY() + 1);
+	public void Down(){
+		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getPENETRABLE() == true){
+			this.lorann.setPosY(this.lorann.getPosY() + 1);
 		}
 	}
 	
-	public void Left(Hero lorann){
-		if(this.elementsList.get(lorann.getPosX()-1 + (lorann.getPosY())*20).getPENETRABLE() == true){
-			lorann.setPosX(lorann.getPosX() - 1);
+	public void Left(){
+		if(this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
+			this.lorann.setPosX(this.lorann.getPosX() - 1);
 		}
 	}
 	
-	public void Right(Hero lorann){
-		if(this.elementsList.get(lorann.getPosX()+1 + (lorann.getPosY())*20).getPENETRABLE() == true){
-			lorann.setPosX(lorann.getPosX() + 1);
+	public void Right(){
+		if(this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
+			this.lorann.setPosX(this.lorann.getPosX() + 1);
 		}
 	}
 
@@ -104,7 +104,7 @@ public class Model extends Observable implements IModel {
 		return elementsList;
 	}
 	
-	public void modifyArray(Hero lorann){
+	public void modifyArray(){
 		char[] elements = this.getMap().toCharArray();
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
@@ -128,8 +128,8 @@ public class Model extends Observable implements IModel {
 					this.elementsList.set(x+(20*y),new Empty());
 					break;
 				}
-				if(x==lorann.getPosX() && y == lorann.getPosY()){
-					this.elementsList.set(x+(20*y),lorann = new Hero());
+				if(x==this.lorann.getPosX() && y == this.lorann.getPosY()){
+					this.elementsList.set(x+(20*y),this.lorann);
 				}
 			}
 		}

@@ -2,9 +2,7 @@ package contract;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
 import elements.Element;
-import elements.Hero;
 
 /**
  * The Interface IModel.
@@ -35,17 +33,15 @@ public interface IModel {
 	 */
 	Observable getObservable();
 
-	public ArrayList<Element> getElementsList();
-	
-	public Hero getLorann();
+	ArrayList<Element> getElementsList();
 
-	void Right(Hero lorann);
+	void Down();
 
-	void Left(Hero lorann);
+	void Up();
 
-	void Up(Hero lorann);
+	void Right();
 
-	void Down(Hero lorann);
+	void Left();
 
-	void modifyArray(Hero lorann);
+	void modifyArray();
 }
