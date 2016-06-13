@@ -28,7 +28,7 @@ public class Controller implements IController {
 	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
-		this.model.loadMap(1);
+		this.model.loadMap(this.model.getLevel());
 	}
 
 	/*

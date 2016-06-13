@@ -28,6 +28,10 @@ public class Model extends Observable implements IModel {
 		return this.map;
 	}
 	
+	public int getLevel(){
+		return this.level;
+	}
+	
 	private void setMap(final String map) {
 		this.map = map;
 		this.setChanged();
@@ -73,7 +77,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public int setNextLevel(){
-		if(this.level == 3)
+		if(this.level == 4)
 			return 1;
 		else
 			return (this.level + 1);

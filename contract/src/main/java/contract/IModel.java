@@ -43,4 +43,6 @@ public interface IModel {
 	void Left();
 
 	void modifyArray();
+	
+	int getLevel();
 }

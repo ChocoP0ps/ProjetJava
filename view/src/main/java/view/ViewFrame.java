@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
