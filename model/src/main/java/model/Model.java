@@ -77,7 +77,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public int setNextLevel(){
-		if(this.level == 4)
+		if(this.level == 6)
 			return 1;
 		else
 			return (this.level + 1);
