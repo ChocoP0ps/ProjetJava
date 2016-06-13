@@ -3,7 +3,7 @@ package model;
 import java.sql.*;
 
 public class DAO {
-	private static String URL = "jdbc:mysql://localhost:3306/projetjava?autoReconnect=true&useSSL=false";
+	private static String URL = "jdbc:mysql://10.113.129.15:3306/projetjava?autoReconnect=true&useSSL=false";
 	private static String LOGIN = "root";
 	private static String PASSWORD = "";
 	private Connection connection;

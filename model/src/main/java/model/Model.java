@@ -15,11 +15,13 @@ import elements.*;
 public class Model extends Observable implements IModel {
 
 	private String map;
+	private int level;
 	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
 	private Hero lorann;
 	
-	public Model() {
-		this.loadMap(1);
+	public Model(int level) {
+		this.level = level;
+		this.loadMap(this.level);
 		for(int i = 0; i<240;i++){
 			this.elementsList.add(i,new Empty());
 		}
@@ -37,9 +39,10 @@ public class Model extends Observable implements IModel {
 	}
 
 	public void loadMap(int level) {
+		this.level = level;
 		final DAO dao = new DAO();
 		dao.open();
-		this.setMap(dao.getMap(level));
+		this.setMap(dao.getMap(this.level));
 		dao.close();
 	}
 	
@@ -58,7 +61,7 @@ public class Model extends Observable implements IModel {
 					this.elementsList.set(x+(20*y),new VerticalWall());
 					break;
 				case 'd' :
-					this.elementsList.set(x+(20*y),new Door());
+					this.elementsList.set(x+(20*y),new Door(this.setNextLevel()));
 					break;
 				case 'n' :
 					this.elementsList.set(x+(20*y),new Empty());
@@ -71,6 +74,16 @@ public class Model extends Observable implements IModel {
 				}
 			}
 		}
+	}
+	
+	public int setNextLevel(){
+		switch(this.level){
+		case 1:
+			return 2;
+		case 2:
+			return 1;
+		}
+		return 0;
 	}
 
 	public Hero getLorann() {
@@ -120,17 +133,22 @@ public class Model extends Observable implements IModel {
 					this.elementsList.set(x+(20*y),new VerticalWall());
 					break;
 				case 'd' :
-					this.elementsList.set(x+(20*y),new Door());
+					this.elementsList.set(x+(20*y),new Door(this.setNextLevel()));
 					break;
 				case 'n' :
 					this.elementsList.set(x+(20*y),new Empty());
 					break;
 				case 's' :
-					this.elementsList.set(x+(20*y),new Empty());
+					this.elementsList.set(x+(20*y),new Door(this.setNextLevel()));
 					break;
 				}
 				if(x==this.lorann.getPosX() && y == this.lorann.getPosY()){
-					this.elementsList.set(x+(20*y),this.lorann);
+					if(elements[x+(20*y)] == 'd' || elements[x+(20*y)] == 's'){
+						this.loadMap(((elements.Door) this.elementsList.get(x+(20*y))).getNextLevel());
+					}
+					else{
+						this.elementsList.set(x+(20*y),this.lorann);
+					}
 				}
 			}
 		}
