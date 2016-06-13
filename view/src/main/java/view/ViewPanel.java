@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ class ViewPanel extends JPanel implements Observer {
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 
+	Image spriteLorann;
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -32,6 +34,14 @@ class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
+		try {
+			spriteLorann = ImageIO.read(new File("sprite/lorann_b.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Thread animLorann = new Thread(new AnimLorann());
+		animLorann.start();
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -98,11 +108,7 @@ class ViewPanel extends JPanel implements Observer {
 					}
 					break;
 				case 5 :
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/lorann_b.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
 					break;
 				case 0 :
 					break;
@@ -121,5 +127,89 @@ class ViewPanel extends JPanel implements Observer {
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 		this.printMap(graphics);
+	}
+
+	
+	class AnimLorann implements Runnable{
+
+		public void run() {
+			int n = 0;
+			while(true){
+				switch(n%8){
+				case 0:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_b.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 1:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_bl.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 2:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_l.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 3:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_ul.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 4:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_u.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 5:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_ur.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 6:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_r.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 7:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/lorann_br.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				repaint(0,0, getWidth(), getHeight());
+				n++;
+			}
+		}
 	}
 }
