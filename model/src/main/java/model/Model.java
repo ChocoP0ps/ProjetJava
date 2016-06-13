@@ -7,11 +7,7 @@ import contract.IElement;
 import contract.IModel;
 import elements.*;
 
-/**
- * The Class Model.
- *
- * @author Jean-Aymeric Diet
- */
+
 public class Model extends Observable implements IModel {
 
 	private String map;
@@ -47,7 +43,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void setElements(){
-		char[] elements = this.getMap().toCharArray();
+		char[] elements = this.map.toCharArray();
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elements[x+(20*y)]){
@@ -77,13 +73,10 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public int setNextLevel(){
-		switch(this.level){
-		case 1:
-			return 2;
-		case 2:
+		if(this.level == 3)
 			return 1;
-		}
-		return 0;
+		else
+			return (this.level + 1);
 	}
 
 	public Hero getLorann() {
@@ -119,6 +112,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void modifyArray(){
+		int newMap = 0;
 		char[] elements = this.getMap().toCharArray();
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
@@ -139,12 +133,13 @@ public class Model extends Observable implements IModel {
 					this.elementsList.set(x+(20*y),new Empty());
 					break;
 				case 's' :
-					this.elementsList.set(x+(20*y),new Door(this.setNextLevel()));
+					this.elementsList.set(x+(20*y),new Empty());
 					break;
 				}
 				if(x==this.lorann.getPosX() && y == this.lorann.getPosY()){
-					if(elements[x+(20*y)] == 'd' || elements[x+(20*y)] == 's'){
+					if(elements[x+(20*y)] == 'd'){
 						this.loadMap(((elements.Door) this.elementsList.get(x+(20*y))).getNextLevel());
+						newMap = 1;
 					}
 					else{
 						this.elementsList.set(x+(20*y),this.lorann);
@@ -152,6 +147,8 @@ public class Model extends Observable implements IModel {
 				}
 			}
 		}
+		if(newMap==1)
+			this.setElements();
 	}
 
 	public Observable getObservable() {
