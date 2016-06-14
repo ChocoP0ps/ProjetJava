@@ -101,9 +101,26 @@ class ViewPanel extends JPanel implements Observer {
 					}
 					break;
 				case 4 :
+					if(elementsList.get(x+(20*y)).getPENETRABLE()){
+						try {
+							graphics.drawImage(ImageIO.read(new File("sprite/gate_open.png")), (x*64), (y*64), 64, 64, viewFrame);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					else{
+						try {
+							graphics.drawImage(ImageIO.read(new File("sprite/gate_closed.png")), (x*64), (y*64), 64, 64, viewFrame);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					break;
+				case 6 :
 					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/gate_open.png")), (x*64), (y*64), 64, 64, viewFrame);
+						graphics.drawImage(ImageIO.read(new File("sprite/crystal_ball.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					break;

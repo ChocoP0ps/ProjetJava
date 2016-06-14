@@ -2,12 +2,13 @@ package elements;
 
 public class Door extends Element{
 	private int TYPE = 4;
-	private boolean PENETRABLE = true;
+	private boolean PENETRABLE;
 	private int nextLevel;
 	
 
 	public Door(int nextLevel) {
 		super();
+		this.PENETRABLE = false;
 		this.nextLevel = nextLevel;
 	}
 
