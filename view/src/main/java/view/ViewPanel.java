@@ -27,6 +27,7 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long	serialVersionUID	= -998294702363713521L;
 
 	Image spriteLorann;
+	Image spriteFire;
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -127,6 +128,8 @@ class ViewPanel extends JPanel implements Observer {
 				case 5 :
 					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
 					break;
+				case 7 :
+					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame); //lol
 				case 0 :
 					break;
 				}
@@ -146,7 +149,9 @@ class ViewPanel extends JPanel implements Observer {
 		this.printMap(graphics);
 	}
 
-	
+	class AnimFire implements Runnable{
+		
+	}
 	class AnimLorann implements Runnable{
 
 		public void run() {
