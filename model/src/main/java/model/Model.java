@@ -214,7 +214,7 @@ public class Model extends Observable implements IModel {
 		private char dir;
 		private int posX;
 		private int posY;
-		private int rebond;
+		private boolean recup;
 		
 		public Shoot(char dir){
 			this.dir = dir;
@@ -225,40 +225,39 @@ public class Model extends Observable implements IModel {
 				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()-1;
-					this.rebond = 0;
 				}
 				else{
-					this.rebond = 2;
+					this.recup = true;
 				}
 				break;
 			case 'Q':
 				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true){
 					this.posX = lorann.getPosX()-1;
 					this.posY = lorann.getPosY();
-					this.rebond = 0;
+					this.recup = false;
 				}
 				else{
-					this.rebond = 2;
+					this.recup = true;
 				}
 				break;
 			case 'S':
 				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()+1;
-					this.rebond = 0;
+					this.recup = false;
 				}
 				else{
-					this.rebond = 2;
+					this.recup = true;
 				}
 				break;
 			case 'D':
 				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true){
 					this.posX = lorann.getPosX()+1;
 					this.posY = lorann.getPosY();
-					this.rebond = 0;
+					this.recup = false;
 				}
 				else{
-					this.rebond = 2;
+					this.recup = true;
 				}
 				break;
 			}
@@ -266,62 +265,72 @@ public class Model extends Observable implements IModel {
 
 		public void run() {
 			Model.shooting=true;
-			while(this.rebond != 2){
+			while(this.recup == false ){
 				switch(this.dir){
 				case 'Z' :
+					elementsList.set(this.posX + (this.posY)*20, new Fire());
 					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY--;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						if(elementsList.get(this.posX + (this.posY-1)*20).getTYPE() == 5){
+							this.recup = true;
+						}
 						this.dir = 'S';
-						this.rebond++;
 					}
 					break;
 				case 'Q' :
+					elementsList.set(this.posX + (this.posY)*20, new Fire());
 					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX--;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						if(elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() == 5){
+							this.recup = true;
+						}
 						this.dir = 'D';
-						this.rebond++;
 					}
 					break;
 				case 'S' :
+					elementsList.set(this.posX + (this.posY)*20, new Fire());
 					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY++;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						if(elementsList.get(this.posX + (this.posY+1)*20).getTYPE() == 5){
+							this.recup = true;
+						}
 						this.dir = 'Z';
-						rebond++;
 					}
 					break;
 				case 'D' :
-					System.out.println("D");
+					elementsList.set(this.posX + (this.posY)*20, new Fire());
 					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX++;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						if(elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() == 5){
+							this.recup = true;
+						}
 						this.dir = 'Q';
-						this.rebond++;
 					}
 					break;
 				}
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				elementsList.set(this.posX + (this.posY)*20, new Empty());
 			}
-			elementsList.set(this.posX + (this.posY)*20, new Empty());
 			Model.shooting=false;
 		}
 	}
