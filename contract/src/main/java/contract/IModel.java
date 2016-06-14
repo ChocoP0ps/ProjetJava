@@ -44,7 +44,7 @@ public interface IModel {
 
 	void modifyArray();
 	
-	void shoot();
+	void shoot(char dir);
 	
 	int getLevel();
 }

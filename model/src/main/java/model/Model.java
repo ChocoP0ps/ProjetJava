@@ -122,9 +122,8 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public void shoot()
-	{
-		
+	public void shoot(char dir){
+		Thread shot = new Thread(new Shoot(dir));
 	}
 
 	public ArrayList<IElement> getElementsList() {
@@ -203,5 +202,68 @@ public class Model extends Observable implements IModel {
 
 	public Observable getObservable() {
 		return this;
+	}
+	
+	class Shoot implements Runnable{
+		
+		private char dir;
+		private int posX;
+		private int posY;
+		
+		public Shoot(char dir){
+			this.dir = dir;
+			this.posX = lorann.getPosX();
+			this.posY = lorann.getPosY();
+		}
+
+		public void run() {
+			int rebond = 0;
+			while(rebond != 2){
+				switch(dir){
+				case 'Z' :
+					if(elementsList.get(posX + (posY-1)*20).getPENETRABLE() == true){
+						elementsList.set(posX + (posY-1)*20, new Fire());
+					}
+					else{
+						this.dir = 'S';
+						rebond++;
+					}
+					break;
+				case 'Q' :
+					if(elementsList.get(posX-1 + (posY)*20).getPENETRABLE() == true){
+						elementsList.set(posX-1 + (posY)*20, new Fire());
+					}
+					else{
+						this.dir = 'D';
+						rebond++;
+					}
+					break;
+				case 'S' :
+					if(elementsList.get(posX + (posY+1)*20).getPENETRABLE() == true){
+						elementsList.set(posX + (posY+1)*20, new Fire());
+					}
+					else{
+						this.dir = 'Z';
+						rebond++;
+					}
+					break;
+				case 'D' :
+					if(elementsList.get(posX-1 + (posY)*20).getPENETRABLE() == true){
+						elementsList.set(posX-1 + (posY)*20, new Fire());
+					}
+					else{
+						this.dir = 'Q';
+						rebond++;
+					}
+					break;
+				}
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

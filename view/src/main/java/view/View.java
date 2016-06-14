@@ -51,6 +51,14 @@ public class View implements IView, Runnable {
 				return ControllerOrder.Down;
 			case KeyEvent.VK_ESCAPE :
 				return ControllerOrder.Exit;
+			case KeyEvent.VK_Z :
+				return ControllerOrder.Z;
+			case KeyEvent.VK_Q :
+				return ControllerOrder.Q;
+			case KeyEvent.VK_S:
+				return ControllerOrder.S;
+			case KeyEvent.VK_D :
+				return ControllerOrder.D;
 			default:
 				return ControllerOrder.Nothing;
 		}

@@ -13,6 +13,9 @@ public enum ControllerOrder {
 	Up, /** The Indonesia. */
 	Down,
 	Nothing,
-	Space,
+	Z,
+	Q,
+	S,
+	D,
 	Exit
 }
