@@ -1,25 +1,18 @@
 package elements;
 
-public class Fire extends Element {
-	private int TYPE = 7;
+public class Deamon extends Element {
+
 	private boolean PENETRABLE = true;
 	private int PosX;
 	private int PosY;
-	
+
+
 	public boolean getPENETRABLE() {
 		return PENETRABLE;
 	}
 
 	public void setPENETRABLE(boolean penetrable) {
 		PENETRABLE = penetrable;
-	}
-
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
 	}
 	
 	public int getPosX() {
@@ -37,7 +30,4 @@ public class Fire extends Element {
 	public void setPosY(int posY) {
 		PosY = posY;
 	}
-}
-
-
 }

@@ -217,6 +217,38 @@ class ViewPanel extends JPanel implements Observer {
 						e.printStackTrace();
 					}
 					break;
+				case 8:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_1.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 9:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_2.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 10:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_3.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 11:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_4.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
 				}
 				try {
 					Thread.sleep(100);
