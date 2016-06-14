@@ -166,6 +166,7 @@ public class Model extends Observable implements IModel {
 					}
 					else if(elements[x+(20*y)] == 'c'){
 						this.open = true;
+						this.elementsList.set(x+(20*y),this.lorann);
 					}
 					else{
 						this.elementsList.set(x+(20*y),this.lorann);
