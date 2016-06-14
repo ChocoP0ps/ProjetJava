@@ -15,9 +15,11 @@ public class Model extends Observable implements IModel {
 	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
 	private Hero lorann;
 	private boolean open;
+	static boolean shooting;
 	
 	public Model(int level) {
 		this.level = level;
+		Model.shooting = false;
 		this.open = false;
 		this.loadMap(this.level);
 		for(int i = 0; i<240;i++){
@@ -123,7 +125,10 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void shoot(char dir){
-		Thread shot = new Thread(new Shoot(dir));
+		if(Model.shooting == false){
+			Thread shot = new Thread(new Shoot(dir));
+			shot.start();
+		}
 	}
 
 	public ArrayList<IElement> getElementsList() {
@@ -209,38 +214,87 @@ public class Model extends Observable implements IModel {
 		private char dir;
 		private int posX;
 		private int posY;
+		private int rebond;
 		
 		public Shoot(char dir){
 			this.dir = dir;
 			this.posX = lorann.getPosX();
 			this.posY = lorann.getPosY();
+			switch(this.dir){
+			case 'Z':
+				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true){
+					this.posX = lorann.getPosX();
+					this.posY = lorann.getPosY()-1;
+					this.rebond = 0;
+				}
+				else{
+					this.rebond = 2;
+				}
+				break;
+			case 'Q':
+				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true){
+					this.posX = lorann.getPosX()-1;
+					this.posY = lorann.getPosY();
+					this.rebond = 0;
+				}
+				else{
+					this.rebond = 2;
+				}
+				break;
+			case 'S':
+				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true){
+					this.posX = lorann.getPosX();
+					this.posY = lorann.getPosY()+1;
+					this.rebond = 0;
+				}
+				else{
+					this.rebond = 2;
+				}
+				break;
+			case 'D':
+				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true){
+					this.posX = lorann.getPosX()+1;
+					this.posY = lorann.getPosY();
+					this.rebond = 0;
+				}
+				else{
+					this.rebond = 2;
+				}
+				break;
+			}
 		}
 
 		public void run() {
-			int rebond = 0;
-			while(rebond != 2){
-				switch(dir){
+			Model.shooting=true;
+			while(this.rebond != 2){
+				switch(this.dir){
 				case 'Z' :
-					if(elementsList.get(posX + (posY-1)*20).getPENETRABLE() == true){
-						elementsList.set(posX + (posY-1)*20, new Fire());
+					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true){
+						elementsList.set(this.posX + (this.posY)*20, new Empty());
+						this.posY--;
+						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
 						this.dir = 'S';
-						rebond++;
+						this.rebond++;
 					}
 					break;
 				case 'Q' :
-					if(elementsList.get(posX-1 + (posY)*20).getPENETRABLE() == true){
-						elementsList.set(posX-1 + (posY)*20, new Fire());
+					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true){
+						elementsList.set(this.posX + (this.posY)*20, new Empty());
+						this.posX--;
+						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
 						this.dir = 'D';
-						rebond++;
+						this.rebond++;
 					}
 					break;
 				case 'S' :
-					if(elementsList.get(posX + (posY+1)*20).getPENETRABLE() == true){
-						elementsList.set(posX + (posY+1)*20, new Fire());
+					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true){
+						elementsList.set(this.posX + (this.posY)*20, new Empty());
+						this.posY++;
+						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
 						this.dir = 'Z';
@@ -248,22 +302,27 @@ public class Model extends Observable implements IModel {
 					}
 					break;
 				case 'D' :
-					if(elementsList.get(posX-1 + (posY)*20).getPENETRABLE() == true){
-						elementsList.set(posX-1 + (posY)*20, new Fire());
+					System.out.println("D");
+					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true){
+						elementsList.set(this.posX + (this.posY)*20, new Empty());
+						this.posX++;
+						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
 						this.dir = 'Q';
-						rebond++;
+						this.rebond++;
 					}
 					break;
 				}
 				try {
-					Thread.sleep(500);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			elementsList.set(this.posX + (this.posY)*20, new Empty());
+			Model.shooting=false;
 		}
 	}
 }

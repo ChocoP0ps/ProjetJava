@@ -2,7 +2,7 @@ package elements;
 
 public class Hero extends Element{
 	private int TYPE = 5;
-	private boolean PENETRABLE = true;
+	private boolean PENETRABLE = false;
 	private int PosX;
 	private int PosY;
 
