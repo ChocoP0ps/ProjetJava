@@ -215,8 +215,10 @@ public class Model extends Observable implements IModel {
 		private int posX;
 		private int posY;
 		private boolean recup;
+		private int levelshoot;
 		
 		public Shoot(char dir){
+			this.levelshoot = level;
 			this.dir = dir;
 			this.posX = lorann.getPosX();
 			this.posY = lorann.getPosY();
@@ -265,7 +267,7 @@ public class Model extends Observable implements IModel {
 
 		public void run() {
 			Model.shooting=true;
-			while(this.recup == false ){
+			while(this.recup == false && this.levelshoot == level){
 				switch(this.dir){
 				case 'Z' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
