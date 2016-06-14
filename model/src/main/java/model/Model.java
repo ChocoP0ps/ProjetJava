@@ -126,8 +126,6 @@ public class Model extends Observable implements IModel {
 	{
 		
 	}
-	
-	
 
 	public ArrayList<IElement> getElementsList() {
 		return elementsList;
