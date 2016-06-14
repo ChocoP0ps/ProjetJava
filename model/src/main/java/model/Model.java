@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 import contract.IElement;
 import contract.IModel;
@@ -56,6 +57,24 @@ public class Model extends Observable implements IModel {
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elements[x+(20*y)]){
+				case 'm' :
+					Random rand = new Random();
+					int typeMonster = rand.nextInt(4);
+					switch(typeMonster){
+					case 0:
+						this.elementsList.set(x+(20*y),new Arbarr());
+						break;
+					case 1:
+						this.elementsList.set(x+(20*y),new Cargyv());
+						break;
+					case 2:
+						this.elementsList.set(x+(20*y),new Kyracj());
+						break;
+					case 3:
+						this.elementsList.set(x+(20*y),new Maarcg());
+						break;
+					}
+					break;
 				case 'b' :
 					this.elementsList.set(x+(20*y),new BoneWall());
 					break;
@@ -154,6 +173,24 @@ public class Model extends Observable implements IModel {
 				}
 				else{
 					switch(elements[x+(20*y)]){
+					case 'm' :
+						Random rand = new Random();
+						int typeMonster = rand.nextInt(4);
+						switch(typeMonster){
+						case 0:
+							this.elementsList.set(x+(20*y),new Arbarr());
+							break;
+						case 1:
+							this.elementsList.set(x+(20*y),new Cargyv());
+							break;
+						case 2:
+							this.elementsList.set(x+(20*y),new Kyracj());
+							break;
+						case 3:
+							this.elementsList.set(x+(20*y),new Maarcg());
+							break;
+						}
+						break;
 					case 'b' :
 						this.elementsList.set(x+(20*y),new BoneWall());
 						break;

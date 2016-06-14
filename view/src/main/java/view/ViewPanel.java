@@ -136,7 +136,7 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 				case 8:
 					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_1.png"));
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_1.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -144,7 +144,7 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 				case 9:
 					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_2.png"));
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_2.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -152,7 +152,7 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 				case 10:
 					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_3.png"));
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_3.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -160,7 +160,7 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 				case 11:
 					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_4.png"));
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_4.png")), (x*64), (y*64), 64, 64, viewFrame);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
