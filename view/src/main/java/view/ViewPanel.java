@@ -134,6 +134,38 @@ class ViewPanel extends JPanel implements Observer {
 					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame);
 				case 0 :
 					break;
+				case 8:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_1.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 9:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_2.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 10:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_3.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 11:
+					try {
+						spriteLorann = ImageIO.read(new File("sprite/monster_4.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
 				}
 			}
 		}
@@ -207,13 +239,15 @@ class ViewPanel extends JPanel implements Observer {
 				n++;
 			}
 		}
-	}
+	}	
+	
+	
 	class AnimLorann implements Runnable{
 
 		public void run() {
 			int n = 0;
 			while(true){
-				switch(n%12){
+				switch(n%8){
 				case 0:
 					try {
 						spriteLorann = ImageIO.read(new File("sprite/lorann_b.png"));
@@ -273,38 +307,6 @@ class ViewPanel extends JPanel implements Observer {
 				case 7:
 					try {
 						spriteLorann = ImageIO.read(new File("sprite/lorann_br.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					break;
-				case 8:
-					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_1.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					break;
-				case 9:
-					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_2.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					break;
-				case 10:
-					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_3.png"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					break;
-				case 11:
-					try {
-						spriteLorann = ImageIO.read(new File("sprite/monster_4.png"));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
