@@ -121,6 +121,13 @@ public class Model extends Observable implements IModel {
 			this.lorann.setPosX(this.lorann.getPosX() + 1);
 		}
 	}
+	
+	public void shoot()
+	{
+		
+	}
+	
+	
 
 	public ArrayList<IElement> getElementsList() {
 		return elementsList;
