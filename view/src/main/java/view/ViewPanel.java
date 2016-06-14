@@ -43,6 +43,8 @@ class ViewPanel extends JPanel implements Observer {
 		}
 		Thread animLorann = new Thread(new AnimLorann());
 		animLorann.start();
+		Thread animFire = new Thread(new AnimFire());
+		animFire.start();
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -129,7 +131,7 @@ class ViewPanel extends JPanel implements Observer {
 					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
 					break;
 				case 7 :
-					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame); //lol
+					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame);
 				case 0 :
 					break;
 				}
@@ -150,14 +152,68 @@ class ViewPanel extends JPanel implements Observer {
 	}
 
 	class AnimFire implements Runnable{
-		
+		public void run() {
+			int n = 0;
+			while(true){
+				switch(n%8){
+				case 0:
+					try {
+						spriteFire = ImageIO.read(new File("sprite/fireball_1.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 1:
+					try {
+						spriteFire = ImageIO.read(new File("sprite/fireball_2.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 2:
+					try {
+						spriteFire = ImageIO.read(new File("sprite/fireball_3.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 3:
+					try {
+						spriteFire = ImageIO.read(new File("sprite/fireball_4.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				case 4:
+					try {
+						spriteFire = ImageIO.read(new File("sprite/fireball_5.png"));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				repaint(0,0, getWidth(), getHeight());
+				n++;
+			}
+		}
 	}
 	class AnimLorann implements Runnable{
 
 		public void run() {
 			int n = 0;
 			while(true){
-				switch(n%8){
+				switch(n%12){
 				case 0:
 					try {
 						spriteLorann = ImageIO.read(new File("sprite/lorann_b.png"));
