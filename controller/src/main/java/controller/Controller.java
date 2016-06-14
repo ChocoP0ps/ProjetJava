@@ -84,6 +84,8 @@ public class Controller implements IController {
 				break;
 			case Nothing:
 				break;
+			case Space:
+				this.model.shoot();
 		}
 		this.model.modifyArray();
 	}
