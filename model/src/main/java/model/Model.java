@@ -220,17 +220,7 @@ public class Model extends Observable implements IModel {
 					}
 				}
 				for(int i = 0; i<this.badList.size(); i++){
-					switch(this.badList.get(i).getTYPE()){
-					case 8 :
-						this.elementsList.set(this.badList.get(i).getPosX() + (20 * this.badList.get(i).getPosY()), element);
-						break;
-					case 9 :
-						break;
-					case 10 :
-						break;
-					case 11 :
-						break;
-					}
+					this.elementsList.set(this.badList.get(i).getPosX() + (20 * this.badList.get(i).getPosY()), this.badList.get(i));
 				}
 			}
 		}
