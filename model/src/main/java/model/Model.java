@@ -175,6 +175,7 @@ public class Model extends Observable implements IModel {
 			for (int x =0; x<20; x++){
 				if(x==this.lorann.getPosX() && y == this.lorann.getPosY()){
 					if(elements[x+(20*y)] == 'd'){
+						this.badList.clear();
 						this.loadMap(((elements.Door) this.elementsList.get(x+(20*y))).getNextLevel());
 						newMap = 1;
 					}
