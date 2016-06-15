@@ -15,6 +15,7 @@ public class Model extends Observable implements IModel {
 	private int level;
 	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
 	private ArrayList<Deamon> badList = new ArrayList<Deamon>();
+	private ArrayList<Purse> purseList = new ArrayList<Purse>();
 	private Hero lorann;
 	private boolean open;
 	static boolean shooting;
@@ -120,8 +121,11 @@ public class Model extends Observable implements IModel {
 					this.lorann.setPosY(y);
 					break;
 				case 'p' :
-					this.elementsList.set(x+(20*y),new Purse());
-					break;
+					Purse purse;
+					this.elementsList.set(x+(20*y),purse = new Purse());
+					purse.setPosX(x);
+					purse.setPosY(y);
+					this.purseList.add(purse);
 				}
 			}
 		}
@@ -228,9 +232,18 @@ public class Model extends Observable implements IModel {
 						this.open = true;
 						this.elementsList.set(x+(20*y),this.lorann);
 					}
+					else if(elements[x+(20*y)] == 'p'){
+						for(int i = 0; i<this.purseList.size(); i++){
+							if(this.purseList.get(i).getPosX() == this.lorann.getPosX() && this.purseList.get(i).getPosY() == this.lorann.getPosY()){
+								this.purseList.get(i).setTAKEN(true);
+								this.elementsList.set(x+(20*y),this.lorann);
+							}
+						}
+					}
 					else{
 						this.elementsList.set(x+(20*y),this.lorann);
 					}
+					
 				}
 				else{
 					switch(elements[x+(20*y)]){
@@ -263,10 +276,18 @@ public class Model extends Observable implements IModel {
 					case 's' :
 						this.elementsList.set(x+(20*y),new Empty());
 						break;
+					case 'p' :
+						this.elementsList.set(x+(20*y),new Empty());
+						break;
 					}
 				}
 				for(int i = 0; i<this.badList.size(); i++){
 					this.elementsList.set(this.badList.get(i).getPosX() + (20 * this.badList.get(i).getPosY()), this.badList.get(i));
+				}
+				for(int i = 0; i<this.purseList.size(); i++){
+					if(this.purseList.get(i).isTAKEN() == false){
+						this.elementsList.set(this.purseList.get(i).getPosX() + (20 * this.purseList.get(i).getPosY()), this.purseList.get(i));
+					}
 				}
 			}
 		}
