@@ -2,7 +2,7 @@ package elements;
 
 public class Purse extends Element{
 	private int TYPE = 12;
-	private boolean PENETRABLE = false;
+	private boolean PENETRABLE = true;
 	
 
 	public boolean getPENETRABLE() {
