@@ -311,7 +311,9 @@ public class Model extends Observable implements IModel {
 					}
 				}
 				for(int i = 0; i<this.badList.size(); i++){
-					this.elementsList.set(this.badList.get(i).getPosX() + (20 * this.badList.get(i).getPosY()), this.badList.get(i));
+					if(this.badList.get(i).isAlive() == true){
+						this.elementsList.set(this.badList.get(i).getPosX() + (20 * this.badList.get(i).getPosY()), this.badList.get(i));
+					}
 				}
 				for(int i = 0; i<this.purseList.size(); i++){
 					if(this.purseList.get(i).isTAKEN() == false){
@@ -423,6 +425,11 @@ class Shoot implements Runnable{
 						if(elementsList.get(this.posX + (this.posY-1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()-1==this.posY){
+								badList.get(i).setAlive(false);
+							}
+						}
 						this.dir = 'S';
 					}
 					break;
@@ -436,6 +443,11 @@ class Shoot implements Runnable{
 					else{
 						if(elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
+						}
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()-1==this.posX && badList.get(i).getPosY()==this.posY){
+								badList.get(i).setAlive(false);
+							}
 						}
 						this.dir = 'D';
 					}
@@ -451,6 +463,11 @@ class Shoot implements Runnable{
 						if(elementsList.get(this.posX + (this.posY+1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()+1==this.posY){
+								badList.get(i).setAlive(false);
+							}
+						}
 						this.dir = 'Z';
 					}
 					break;
@@ -464,6 +481,11 @@ class Shoot implements Runnable{
 					else{
 						if(elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
+						}
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()+1==this.posX && badList.get(i).getPosY()==this.posY){
+								badList.get(i).setAlive(false);
+							}
 						}
 						this.dir = 'Q';
 					}
