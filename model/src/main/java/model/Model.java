@@ -119,6 +119,9 @@ public class Model extends Observable implements IModel {
 					this.lorann.setPosX(x);
 					this.lorann.setPosY(y);
 					break;
+				case 'p' :
+					this.elementsList.set(x+(20*y),new Purse());
+					break;
 				}
 			}
 		}
