@@ -2,7 +2,7 @@ package elements;
 
 public class Deamon extends Mobile {
 
-	private boolean PENETRABLE = true;
+	private boolean PENETRABLE = false;
 	private int PosX;
 	private int PosY;
 
