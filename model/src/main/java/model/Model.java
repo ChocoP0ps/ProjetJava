@@ -139,7 +139,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Up(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true){
+		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 6){
 			mobile.setPosY(mobile.getPosY() - 1);
 			return true;
 		}
@@ -149,7 +149,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Down(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true){
+		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6){
 			mobile.setPosY(mobile.getPosY() + 1);
 			return true;
 		}
@@ -159,7 +159,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Left(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true){
+		if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 6){
 			mobile.setPosX(mobile.getPosX() - 1);
 			return true;
 		}
@@ -169,7 +169,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Right(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true){
+		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6){
 			mobile.setPosX(mobile.getPosX() + 1);
 			return true;
 		}
@@ -177,6 +177,7 @@ public class Model extends Observable implements IModel {
 			return false;
 		}
 	}
+	
 	public void Up(){
 		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() - 1);
