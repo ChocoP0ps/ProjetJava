@@ -147,6 +147,10 @@ public class Model extends Observable implements IModel {
 			mobile.setPosY(mobile.getPosY() - 1);
 			return true;
 		}
+		else if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() == 5){
+			this.lorann.setAlive(false);
+			return true;
+		}
 		else{
 			return false;
 		}
@@ -155,6 +159,10 @@ public class Model extends Observable implements IModel {
 	public boolean Down(Deamon mobile){
 		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() + 1);
+			return true;
+		}
+		else if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() == 5){
+			this.lorann.setAlive(false);
 			return true;
 		}
 		else{
@@ -167,6 +175,10 @@ public class Model extends Observable implements IModel {
 			mobile.setPosX(mobile.getPosX() - 1);
 			return true;
 		}
+		else if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() == 5){
+			this.lorann.setAlive(false);
+			return true;
+		}
 		else{
 			return false;
 		}
@@ -175,6 +187,10 @@ public class Model extends Observable implements IModel {
 	public boolean Right(Deamon mobile){
 		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() + 1);
+			return true;
+		}
+		else if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() == 5){
+			this.lorann.setAlive(false);
 			return true;
 		}
 		else{
@@ -186,11 +202,17 @@ public class Model extends Observable implements IModel {
 		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() - 1);
 		}
+		else if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getTYPE() == 11){
+			this.lorann.setAlive(false);
+		}
 	}
 	
 	public void Down(){
 		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() + 1);
+		}
+		else if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 11){
+			this.lorann.setAlive(false);
 		}
 	}
 	
@@ -198,11 +220,17 @@ public class Model extends Observable implements IModel {
 		if(this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
 			this.lorann.setPosX(this.lorann.getPosX() - 1);
 		}
+		else if(this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 11){
+			this.lorann.setAlive(false);
+		}
 	}
 	
 	public void Right(){
 		if(this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
 			this.lorann.setPosX(this.lorann.getPosX() + 1);
+		}
+		else if(this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 11){
+			this.lorann.setAlive(false);
 		}
 	}
 	
@@ -225,6 +253,7 @@ public class Model extends Observable implements IModel {
 				if(x==this.lorann.getPosX() && y == this.lorann.getPosY()){
 					if(elements[x+(20*y)] == 'd'){
 						this.badList.clear();
+						this.purseList.clear();
 						this.loadMap(((elements.Door) this.elementsList.get(x+(20*y))).getNextLevel());
 						newMap = 1;
 					}
@@ -302,6 +331,13 @@ public class Model extends Observable implements IModel {
 		}
 		if(newMap==1)
 			this.setElements();
+		
+		if(this.lorann.isAlive() == false){
+			this.badList.clear();
+			this.purseList.clear();
+			this.loadMap(1);
+			this.setElements();
+		}
 	}
 
 	public boolean isOpen() {
@@ -485,7 +521,7 @@ class Shoot implements Runnable{
 					}
 				}
 				try {
-					Thread.sleep(250);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
