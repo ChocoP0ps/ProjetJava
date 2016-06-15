@@ -143,7 +143,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Up(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 6){
+		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 6 && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() - 1);
 			return true;
 		}
@@ -153,7 +153,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Down(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6){
+		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() + 1);
 			return true;
 		}
@@ -163,7 +163,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Left(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 6){
+		if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 6 && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() - 1);
 			return true;
 		}
@@ -173,7 +173,7 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Right(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6){
+		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() + 1);
 			return true;
 		}
@@ -331,7 +331,7 @@ class Shoot implements Runnable{
 			this.posY = lorann.getPosY();
 			switch(this.dir){
 			case 'Z':
-				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6){
+				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()-1;
 				}
@@ -340,7 +340,7 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'Q':
-				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6){
+				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX()-1;
 					this.posY = lorann.getPosY();
 					this.recup = false;
@@ -350,7 +350,7 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'S':
-				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6){
+				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()+1;
 					this.recup = false;
@@ -360,7 +360,7 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'D':
-				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6){
+				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6&& elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX()+1;
 					this.posY = lorann.getPosY();
 					this.recup = false;
@@ -378,7 +378,7 @@ class Shoot implements Runnable{
 				switch(this.dir){
 				case 'Z' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6){
+					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6&& elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY--;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
@@ -392,7 +392,7 @@ class Shoot implements Runnable{
 					break;
 				case 'Q' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6){
+					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX--;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
@@ -406,7 +406,7 @@ class Shoot implements Runnable{
 					break;
 				case 'S' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6){
+					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY++;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
@@ -420,7 +420,7 @@ class Shoot implements Runnable{
 					break;
 				case 'D' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6){
+					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX++;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
