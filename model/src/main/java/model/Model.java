@@ -294,7 +294,7 @@ public class Model extends Observable implements IModel {
 		return this;
 	}
 	
-	class Shoot implements Runnable{
+class Shoot implements Runnable{
 		
 		private char dir;
 		private int posX;
@@ -309,7 +309,7 @@ public class Model extends Observable implements IModel {
 			this.posY = lorann.getPosY();
 			switch(this.dir){
 			case 'Z':
-				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4){
+				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()-1;
 				}
@@ -318,7 +318,7 @@ public class Model extends Observable implements IModel {
 				}
 				break;
 			case 'Q':
-				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4){
+				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6){
 					this.posX = lorann.getPosX()-1;
 					this.posY = lorann.getPosY();
 					this.recup = false;
@@ -328,7 +328,7 @@ public class Model extends Observable implements IModel {
 				}
 				break;
 			case 'S':
-				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4){
+				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()+1;
 					this.recup = false;
@@ -338,7 +338,7 @@ public class Model extends Observable implements IModel {
 				}
 				break;
 			case 'D':
-				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4){
+				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6){
 					this.posX = lorann.getPosX()+1;
 					this.posY = lorann.getPosY();
 					this.recup = false;
@@ -356,7 +356,7 @@ public class Model extends Observable implements IModel {
 				switch(this.dir){
 				case 'Z' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4){
+					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY--;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
@@ -370,7 +370,7 @@ public class Model extends Observable implements IModel {
 					break;
 				case 'Q' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4){
+					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX--;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
@@ -384,7 +384,7 @@ public class Model extends Observable implements IModel {
 					break;
 				case 'S' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4){
+					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY++;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
@@ -398,7 +398,7 @@ public class Model extends Observable implements IModel {
 					break;
 				case 'D' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4){
+					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX++;
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
