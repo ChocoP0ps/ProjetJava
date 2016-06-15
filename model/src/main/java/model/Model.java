@@ -14,6 +14,7 @@ public class Model extends Observable implements IModel {
 	private String map;
 	private int level;
 	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
+	private ArrayList<Deamon> badList = new ArrayList<Deamon>();
 	private Hero lorann;
 	private boolean open;
 	static boolean shooting;
@@ -58,20 +59,33 @@ public class Model extends Observable implements IModel {
 			for (int x =0; x<20; x++){
 				switch(elements[x+(20*y)]){
 				case 'm' :
+					Deamon bad = new Deamon();
 					Random rand = new Random();
 					int typeMonster = rand.nextInt(4);
 					switch(typeMonster){
 					case 0:
-						this.elementsList.set(x+(20*y),new Arbarr());
+						this.elementsList.set(x+(20*y),bad = new Arbarr());
+						bad.setPosX(x);
+						bad.setPosY(y);
+						this.badList.add(bad);
 						break;
 					case 1:
-						this.elementsList.set(x+(20*y),new Cargyv());
+						this.elementsList.set(x+(20*y),bad = new Cargyv());
+						bad.setPosX(x);
+						bad.setPosY(y);
+						this.badList.add(bad);
 						break;
 					case 2:
-						this.elementsList.set(x+(20*y),new Kyracj());
+						this.elementsList.set(x+(20*y),bad = new Kyracj());
+						bad.setPosX(x);
+						bad.setPosY(y);
+						this.badList.add(bad);
 						break;
 					case 3:
-						this.elementsList.set(x+(20*y),new Maarcg());
+						this.elementsList.set(x+(20*y),bad = new Maarcg());
+						bad.setPosX(x);
+						bad.setPosY(y);
+						this.badList.add(bad);
 						break;
 					}
 					break;
@@ -175,22 +189,7 @@ public class Model extends Observable implements IModel {
 				else{
 					switch(elements[x+(20*y)]){
 					case 'm' :
-						Random rand = new Random();
-						int typeMonster = rand.nextInt(4);
-						switch(typeMonster){
-						case 0:
-							this.elementsList.set(x+(20*y),new Arbarr());
-							break;
-						case 1:
-							this.elementsList.set(x+(20*y),new Cargyv());
-							break;
-						case 2:
-							this.elementsList.set(x+(20*y),new Kyracj());
-							break;
-						case 3:
-							this.elementsList.set(x+(20*y),new Maarcg());
-							break;
-						}
+						this.elementsList.set(x+(20*y),new Empty());
 						break;
 					case 'b' :
 						this.elementsList.set(x+(20*y),new BoneWall());
@@ -217,6 +216,19 @@ public class Model extends Observable implements IModel {
 						break;
 					case 's' :
 						this.elementsList.set(x+(20*y),new Empty());
+						break;
+					}
+				}
+				for(int i = 0; i<this.badList.size(); i++){
+					switch(this.badList.get(i).getTYPE()){
+					case 8 :
+						this.elementsList.set(this.badList.get(i).getPosX() + (20 * this.badList.get(i).getPosY()), element);
+						break;
+					case 9 :
+						break;
+					case 10 :
+						break;
+					case 11 :
 						break;
 					}
 				}
