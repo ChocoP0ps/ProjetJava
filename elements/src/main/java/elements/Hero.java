@@ -1,6 +1,6 @@
 package elements;
 
-public class Hero extends Element{
+public class Hero extends Mobile{
 	private int TYPE = 5;
 	private boolean PENETRABLE = false;
 	private int PosX;

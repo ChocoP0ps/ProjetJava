@@ -1,7 +1,10 @@
 package elements;
 
-public class Maarcg extends Deamon {
-	private int TYPE = 11;
+public class Mobile extends Element{
+
+	public Mobile() {
+		// TODO Auto-generated constructor stub
+	}
 	private int PosX;
 	private int PosY;
 	
@@ -19,13 +22,5 @@ public class Maarcg extends Deamon {
 	
 	public void setPosY(int posY) {
 		PosY = posY;
-	}
-	
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
 	}
 }

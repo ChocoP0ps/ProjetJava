@@ -28,6 +28,8 @@ public class Model extends Observable implements IModel {
 			this.elementsList.add(i,new Empty());
 		}
 		this.setElements();
+		Thread mouvEnemy = new Thread(new MouvEnemy());
+		mouvEnemy.start();
 	}
 	
 	public String getMap() {
@@ -133,6 +135,45 @@ public class Model extends Observable implements IModel {
 		return lorann;
 	}
 	
+	public boolean Up(Deamon mobile){
+		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true){
+			mobile.setPosY(mobile.getPosY() - 1);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public boolean Down(Deamon mobile){
+		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true){
+			mobile.setPosY(mobile.getPosY() + 1);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public boolean Left(Deamon mobile){
+		if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true){
+			mobile.setPosX(mobile.getPosX() - 1);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public boolean Right(Deamon mobile){
+		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true){
+			mobile.setPosX(mobile.getPosX() + 1);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	public void Up(){
 		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() - 1);
@@ -375,6 +416,54 @@ public class Model extends Observable implements IModel {
 				elementsList.set(this.posX + (this.posY)*20, new Empty());
 			}
 			Model.shooting=false;
+		}
+	}
+	
+	class MouvEnemy implements Runnable{
+
+		public void run() {
+			while(true){
+				for(int i = 0; i < badList.size(); i++){
+					Random rand = new Random();
+					int nombre = rand.nextInt(4);
+					switch(nombre){
+					case 0:
+						if(Up(badList.get(i))){}
+						else{
+							i--;
+						}
+						break;
+
+					case 1:
+						if(Left(badList.get(i))){}
+						else{
+							i--;
+						}
+						break;
+
+					case 2:
+						if(Right(badList.get(i))){}
+						else{
+							i--;
+						}
+						break;
+
+					case 3:
+						if(Down(badList.get(i))){}
+						else{
+							i--;
+						}
+						break;
+					}
+				}
+				try {
+					Thread.sleep(250);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				modifyArray();
+			}
 		}
 	}
 }
