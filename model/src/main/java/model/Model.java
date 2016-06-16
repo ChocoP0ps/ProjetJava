@@ -90,6 +90,7 @@ public class Model extends Observable implements IModel {
 						this.badList.add(bad);
 						break;
 					default:
+						this.elementsList.set(x+(20*y),new Empty());
 						break;
 					}
 					cpt++;
