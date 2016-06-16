@@ -370,6 +370,12 @@ class Shoot implements Runnable{
 			this.posY = lorann.getPosY();
 			switch(this.dir){
 			case 'Z':
+				for(int i = 0; i<badList.size(); i++){
+					if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+						badList.remove(i);
+						elementsList.set(this.posX + (this.posY-1)*20, new Empty());
+					}
+				}
 				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()-1;
@@ -379,6 +385,12 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'Q':
+				for(int i = 0; i<badList.size(); i++){
+					if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+						badList.remove(i);
+						elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
+					}
+				}
 				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX()-1;
 					this.posY = lorann.getPosY();
@@ -389,6 +401,12 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'S':
+				for(int i = 0; i<badList.size(); i++){
+					if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+						badList.remove(i);
+						elementsList.set(this.posX + (this.posY+1)*20, new Empty());
+					}
+				}
 				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()+1;
@@ -399,6 +417,12 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'D':
+				for(int i = 0; i<badList.size(); i++){
+					if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+						badList.remove(i);
+						elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
+					}
+				}
 				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6&& elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX()+1;
 					this.posY = lorann.getPosY();
@@ -417,6 +441,12 @@ class Shoot implements Runnable{
 				switch(this.dir){
 				case 'Z' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<badList.size(); i++){
+						if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+							badList.remove(i);
+							elementsList.set(this.posX + (this.posY-1)*20, new Empty());
+						}
+					}
 					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY--;
@@ -426,18 +456,17 @@ class Shoot implements Runnable{
 						if(elementsList.get(this.posX + (this.posY-1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								System.out.println("Mort !");
-								badList.remove(i);
-								elementsList.set(this.posX + (this.posY-1)*20, new Empty());
-							}
-						}
 						this.dir = 'S';
 					}
 					break;
 				case 'Q' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<badList.size(); i++){
+						if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+							badList.remove(i);
+							elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
+						}
+					}
 					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX--;
@@ -447,18 +476,17 @@ class Shoot implements Runnable{
 						if(elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
 						}
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								System.out.println("Mort !");
-								badList.remove(i);
-								elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
-							}
-						}
 						this.dir = 'D';
 					}
 					break;
 				case 'S' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<badList.size(); i++){
+						if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+							badList.remove(i);
+							elementsList.set(this.posX + (this.posY+1)*20, new Empty());
+						}
+					}
 					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posY++;
@@ -468,18 +496,17 @@ class Shoot implements Runnable{
 						if(elementsList.get(this.posX + (this.posY+1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								System.out.println("Mort !");
-								badList.remove(i);
-								elementsList.set(this.posX + (this.posY+1)*20, new Empty());
-							}
-						}
 						this.dir = 'Z';
 					}
 					break;
 				case 'D' :
 					elementsList.set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<badList.size(); i++){
+						if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+							badList.remove(i);
+							elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
+						}
+					}
 					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
 						elementsList.set(this.posX + (this.posY)*20, new Empty());
 						this.posX++;
@@ -488,13 +515,6 @@ class Shoot implements Runnable{
 					else{
 						if(elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
-						}
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								System.out.println("Mort !");
-								badList.remove(i);
-								elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
-							}
 						}
 						this.dir = 'Q';
 					}
