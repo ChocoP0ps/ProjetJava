@@ -89,6 +89,8 @@ public class Model extends Observable implements IModel {
 						bad.setPosY(y);
 						this.badList.add(bad);
 						break;
+					default:
+						break;
 					}
 					cpt++;
 					break;
