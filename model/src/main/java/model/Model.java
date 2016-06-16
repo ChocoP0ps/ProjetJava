@@ -19,8 +19,10 @@ public class Model extends Observable implements IModel {
 	private Hero lorann;
 	private boolean open;
 	static boolean shooting;
+	private int score;
 	
 	public Model(int level) {
+		this.score = 0;
 		this.level = level;
 		Model.shooting = false;
 		this.open = false;
@@ -56,6 +58,9 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void setElements(){
+		if(this.level==2){
+			this.score = 0;
+		}
 		char[] elements = this.map.toCharArray();
 		this.open = false;
 		int cpt = 0;
@@ -269,8 +274,12 @@ public class Model extends Observable implements IModel {
 					else if(elements[x+(20*y)] == 'p'){
 						for(int i = 0; i<this.purseList.size(); i++){
 							if(this.purseList.get(i).getPosX() == this.lorann.getPosX() && this.purseList.get(i).getPosY() == this.lorann.getPosY()){
-								this.purseList.get(i).setTAKEN(true);
-								this.elementsList.set(x+(20*y),this.lorann);
+								if(this.purseList.get(i).isTAKEN() == false){
+									this.score = this.score + 100;
+									System.out.println("Score : " + this.score);
+									this.purseList.get(i).setTAKEN(true);
+									this.elementsList.set(x+(20*y),this.lorann);
+								}
 							}
 						}
 					}
@@ -340,11 +349,20 @@ public class Model extends Observable implements IModel {
 			this.setElements();
 		
 		if(this.lorann.isAlive() == false){
+			System.out.println("Score : " + this.score);
 			this.badList.clear();
 			this.purseList.clear();
 			this.loadMap(1);
 			this.setElements();
 		}
+	}
+
+	public int getScore() {
+		return this.score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	public boolean isOpen() {
@@ -377,6 +395,8 @@ class Shoot implements Runnable{
 				for(int i = 0; i<badList.size(); i++){
 					if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 						badList.remove(i);
+						score = score + 200;
+						System.out.println("Score : " + score);
 						elementsList.set(this.posX + (this.posY-1)*20, new Empty());
 					}
 				}
@@ -392,6 +412,8 @@ class Shoot implements Runnable{
 				for(int i = 0; i<badList.size(); i++){
 					if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 						badList.remove(i);
+						score = score + 200;
+						System.out.println("Score : " + score);
 						elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
 					}
 				}
@@ -408,6 +430,8 @@ class Shoot implements Runnable{
 				for(int i = 0; i<badList.size(); i++){
 					if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 						badList.remove(i);
+						score = score + 200;
+						System.out.println("Score : " + score);
 						elementsList.set(this.posX + (this.posY+1)*20, new Empty());
 					}
 				}
@@ -424,6 +448,8 @@ class Shoot implements Runnable{
 				for(int i = 0; i<badList.size(); i++){
 					if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 						badList.remove(i);
+						score = score + 200;
+						System.out.println("Score : " + score);
 						elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
 					}
 				}
@@ -448,6 +474,8 @@ class Shoot implements Runnable{
 					for(int i = 0; i<badList.size(); i++){
 						if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 							badList.remove(i);
+							score = score + 200;
+							System.out.println("Score : " + score);
 							elementsList.set(this.posX + (this.posY-1)*20, new Empty());
 						}
 					}
@@ -460,6 +488,8 @@ class Shoot implements Runnable{
 						for(int i = 0; i<badList.size(); i++){
 							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 								badList.remove(i);
+								score = score + 200;
+								System.out.println("Score : " + score);
 								elementsList.set(this.posX + (this.posY-1)*20, new Empty());
 							}
 						}
@@ -474,6 +504,8 @@ class Shoot implements Runnable{
 					for(int i = 0; i<badList.size(); i++){
 						if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 							badList.remove(i);
+							score = score + 200;
+							System.out.println("Score : " + score);
 							elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
 						}
 					}
@@ -486,6 +518,8 @@ class Shoot implements Runnable{
 						for(int i = 0; i<badList.size(); i++){
 							if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 								badList.remove(i);
+								score = score + 200;
+								System.out.println("Score : " + score);
 								elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
 							}
 						}
@@ -500,6 +534,8 @@ class Shoot implements Runnable{
 					for(int i = 0; i<badList.size(); i++){
 						if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 							badList.remove(i);
+							score = score + 200;
+							System.out.println("Score : " + score);
 							elementsList.set(this.posX + (this.posY+1)*20, new Empty());
 						}
 					}
@@ -512,6 +548,8 @@ class Shoot implements Runnable{
 						for(int i = 0; i<badList.size(); i++){
 							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 								badList.remove(i);
+								score = score + 200;
+								System.out.println("Score : " + score);
 								elementsList.set(this.posX + (this.posY+1)*20, new Empty());
 							}
 						}
@@ -526,6 +564,8 @@ class Shoot implements Runnable{
 					for(int i = 0; i<badList.size(); i++){
 						if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 							badList.remove(i);
+							score = score + 200;
+							System.out.println("Score : " + score);
 							elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
 						}
 					}
@@ -538,6 +578,8 @@ class Shoot implements Runnable{
 						for(int i = 0; i<badList.size(); i++){
 							if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
 								badList.remove(i);
+								score = score + 200;
+								System.out.println("Score : " + score);
 								elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
 							}
 						}
@@ -601,7 +643,6 @@ class Shoot implements Runnable{
 				try {
 					Thread.sleep(250);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				modifyArray();

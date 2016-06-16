@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -188,6 +189,12 @@ class ViewPanel extends JPanel implements Observer {
 	protected void paintComponent(final Graphics graphics) {
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+		if(this.viewFrame.getModel().getLevel() == 1){
+			Font font = new Font("Arial", Font.BOLD, 80);
+			graphics.setColor(Color.red);
+			graphics.setFont(font);
+			graphics.drawString("Score : " + this.viewFrame.getModel().getScore(), 416, 256);
+		}
 		this.printMap(graphics);
 	}
 

@@ -47,4 +47,6 @@ public interface IModel {
 	void shoot(char dir);
 	
 	int getLevel();
+	
+	int getScore();
 }
