@@ -241,6 +241,7 @@ public class Model extends Observable implements IModel {
 	public void shoot(char dir){
 		if(Model.shooting == false){
 			Thread shot = new Thread(new Shoot(dir));
+			shot.setPriority(Thread.MAX_PRIORITY);
 			shot.start();
 		}
 	}
@@ -456,6 +457,12 @@ class Shoot implements Runnable{
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+								badList.remove(i);
+								elementsList.set(this.posX + (this.posY-1)*20, new Empty());
+							}
+						}
 						if(elementsList.get(this.posX + (this.posY-1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
@@ -476,6 +483,12 @@ class Shoot implements Runnable{
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+								badList.remove(i);
+								elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
+							}
+						}
 						if(elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
 						}
@@ -496,6 +509,12 @@ class Shoot implements Runnable{
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+								badList.remove(i);
+								elementsList.set(this.posX + (this.posY+1)*20, new Empty());
+							}
+						}
 						if(elementsList.get(this.posX + (this.posY+1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
@@ -516,6 +535,12 @@ class Shoot implements Runnable{
 						elementsList.set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
+						for(int i = 0; i<badList.size(); i++){
+							if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
+								badList.remove(i);
+								elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
+							}
+						}
 						if(elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
 						}
