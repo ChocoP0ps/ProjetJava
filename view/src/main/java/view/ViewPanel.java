@@ -29,6 +29,9 @@ class ViewPanel extends JPanel implements Observer {
 
 	Image spriteLorann;
 	Image spriteFire;
+	String name;
+	int first;
+	
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -36,6 +39,8 @@ class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
+		this.first = 0;
+		this.name = "";
 		try {
 			spriteLorann = ImageIO.read(new File("sprite/lorann_b.png"));
 		} catch (IOException e) {
@@ -187,13 +192,20 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
+		if(this.viewFrame.getModel().getLevel() == 1 && this.first == 1){
+			this.first = 0;
+			this.name = this.viewFrame.printMessage();
+		}
+		if(this.viewFrame.getModel().getLevel() != 1)
+			this.first = 1;
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 		if(this.viewFrame.getModel().getLevel() == 1){
 			Font font = new Font("Arial", Font.BOLD, 80);
 			graphics.setColor(Color.red);
 			graphics.setFont(font);
-			graphics.drawString("Score : " + this.viewFrame.getModel().getScore(), 416, 256);
+			if(this.name != "")
+				graphics.drawString(this.name + " : " + this.viewFrame.getModel().getScore(), 416, 256);
 		}
 		this.printMap(graphics);
 	}

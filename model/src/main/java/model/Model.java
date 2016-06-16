@@ -10,7 +10,8 @@ import elements.*;
 
 
 public class Model extends Observable implements IModel {
-
+	
+	private String name;
 	private String map;
 	private int level;
 	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
@@ -152,11 +153,11 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Up(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 6 && elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 12){
+		if(this.getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true && getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() - 1);
 			return true;
 		}
-		else if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() == 5){
+		else if(this.getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() == 5){
 			this.lorann.setAlive(false);
 			return true;
 		}
@@ -166,11 +167,11 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Down(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6 && elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 12){
+		if(this.getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() + 1);
 			return true;
 		}
-		else if(this.elementsList.get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() == 5){
+		else if(this.getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() == 5){
 			this.lorann.setAlive(false);
 			return true;
 		}
@@ -180,11 +181,11 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Left(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 6 && elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 12){
+		if(this.getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true && getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() - 1);
 			return true;
 		}
-		else if(this.elementsList.get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() == 5){
+		else if(this.getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() == 5){
 			this.lorann.setAlive(false);
 			return true;
 		}
@@ -194,11 +195,11 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public boolean Right(Deamon mobile){
-		if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6 && elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 12){
+		if(this.getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() + 1);
 			return true;
 		}
-		else if(this.elementsList.get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() == 5){
+		else if(this.getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() == 5){
 			this.lorann.setAlive(false);
 			return true;
 		}
@@ -217,28 +218,28 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void Down(){
-		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getPENETRABLE() == true){
+		if(this.getElementsList().get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() + 1);
 		}
-		else if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 11){
+		else if(this.getElementsList().get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 8 || this.getElementsList().get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 9 || this.getElementsList().get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 10 || this.getElementsList().get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getTYPE() == 11){
 			this.lorann.setAlive(false);
 		}
 	}
 	
 	public void Left(){
-		if(this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
+		if(this.getElementsList().get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
 			this.lorann.setPosX(this.lorann.getPosX() - 1);
 		}
-		else if(this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 11){
+		else if(this.getElementsList().get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 8 || this.getElementsList().get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 9 || this.getElementsList().get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 10 || this.getElementsList().get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getTYPE() == 11){
 			this.lorann.setAlive(false);
 		}
 	}
 	
 	public void Right(){
-		if(this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
+		if(this.getElementsList().get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
 			this.lorann.setPosX(this.lorann.getPosX() + 1);
 		}
-		else if(this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 8 || this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 9 || this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 10 || this.elementsList.get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 11){
+		else if(this.getElementsList().get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 8 || this.getElementsList().get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 9 || this.getElementsList().get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 10 || this.getElementsList().get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getTYPE() == 11){
 			this.lorann.setAlive(false);
 		}
 	}
@@ -246,15 +247,22 @@ public class Model extends Observable implements IModel {
 	public void shoot(char dir){
 		if(Model.shooting == false){
 			Thread shot = new Thread(new Shoot(dir));
-			shot.setPriority(Thread.MAX_PRIORITY);
 			shot.start();
 		}
 	}
 
-	public ArrayList<IElement> getElementsList() {
+	public synchronized ArrayList<IElement> getElementsList() {
 		return elementsList;
 	}
 	
+	public synchronized ArrayList<Deamon> getBadList() {
+		return badList;
+	}
+
+	public void setBadList(ArrayList<Deamon> badList) {
+		this.badList = badList;
+	}
+
 	public void modifyArray(){
 		int newMap = 0;
 		char[] elements = this.getMap().toCharArray();
@@ -357,6 +365,14 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getScore() {
 		return this.score;
 	}
@@ -392,32 +408,33 @@ class Shoot implements Runnable{
 			this.posY = lorann.getPosY();
 			switch(this.dir){
 			case 'Z':
-				for(int i = 0; i<badList.size(); i++){
-					if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-						badList.remove(i);
+				for(int i = 0; i<getBadList().size(); i++){
+					if(getBadList().get(i).getPosX()==this.posX && getBadList().get(i).getPosY()==this.posY-1){
+						getBadList().remove(i);
 						score = score + 200;
 						System.out.println("Score : " + score);
-						elementsList.set(this.posX + (this.posY-1)*20, new Empty());
+						getElementsList().set(this.posX + (this.posY-1)*20, new Empty());
 					}
 				}
-				if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 12){
+				if(getElementsList().get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() != 4 && getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() != 6 && getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()-1;
+					this.recup = false;
 				}
 				else{
 					this.recup = true;
 				}
 				break;
 			case 'Q':
-				for(int i = 0; i<badList.size(); i++){
-					if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-						badList.remove(i);
+				for(int i = 0; i<getBadList().size(); i++){
+					if(getBadList().get(i).getPosX()==this.posX-1 && getBadList().get(i).getPosY()==this.posY){
+						getBadList().remove(i);
 						score = score + 200;
 						System.out.println("Score : " + score);
-						elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
+						getElementsList().set(this.posX-1 + (this.posY)*20, new Empty());
 					}
 				}
-				if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
+				if(getElementsList().get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX()-1;
 					this.posY = lorann.getPosY();
 					this.recup = false;
@@ -427,15 +444,15 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'S':
-				for(int i = 0; i<badList.size(); i++){
-					if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-						badList.remove(i);
+				for(int i = 0; i<getBadList().size(); i++){
+					if(getBadList().get(i).getPosX()==this.posX && getBadList().get(i).getPosY()==this.posY+1){
+						getBadList().remove(i);
 						score = score + 200;
 						System.out.println("Score : " + score);
-						elementsList.set(this.posX + (this.posY+1)*20, new Empty());
+						getElementsList().set(this.posX + (this.posY+1)*20, new Empty());
 					}
 				}
-				if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 12){
+				if(getElementsList().get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() != 4 && getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() != 6 && getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX();
 					this.posY = lorann.getPosY()+1;
 					this.recup = false;
@@ -445,15 +462,15 @@ class Shoot implements Runnable{
 				}
 				break;
 			case 'D':
-				for(int i = 0; i<badList.size(); i++){
-					if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-						badList.remove(i);
+				for(int i = 0; i<getBadList().size(); i++){
+					if(getBadList().get(i).getPosX()==this.posX+1 && getBadList().get(i).getPosY()==this.posY){
+						getBadList().remove(i);
 						score = score + 200;
 						System.out.println("Score : " + score);
-						elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
+						getElementsList().set(this.posX+1 + (this.posY)*20, new Empty());
 					}
 				}
-				if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6&& elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
+				if(getElementsList().get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() != 6 && getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
 					this.posX = lorann.getPosX()+1;
 					this.posY = lorann.getPosY();
 					this.recup = false;
@@ -465,125 +482,125 @@ class Shoot implements Runnable{
 			}
 		}
 
-		public synchronized void run() {
+		public void run() {
 			Model.shooting=true;
 			while(this.recup == false && this.levelshoot == level){
 				switch(this.dir){
 				case 'Z' :
-					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					for(int i = 0; i<badList.size(); i++){
-						if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-							badList.remove(i);
+					getElementsList().set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<getBadList().size(); i++){
+						if(getBadList().get(i).getPosX()==this.posX && getBadList().get(i).getPosY()==this.posY-1){
+							getBadList().remove(i);
 							score = score + 200;
 							System.out.println("Score : " + score);
-							elementsList.set(this.posX + (this.posY-1)*20, new Empty());
+							getElementsList().set(this.posX + (this.posY-1)*20, new Empty());
 						}
 					}
-					if(elementsList.get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY-1)*20).getTYPE() != 12){
-						elementsList.set(this.posX + (this.posY)*20, new Empty());
+					if(getElementsList().get(this.posX + (this.posY-1)*20).getPENETRABLE() == true && getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() != 4 && getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() != 6 && getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() != 12){
+						getElementsList().set(this.posX + (this.posY)*20, new Empty());
 						this.posY--;
-						elementsList.set(this.posX + (this.posY)*20, new Fire());
+						getElementsList().set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY-1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								badList.remove(i);
+						for(int i = 0; i<getBadList().size(); i++){
+							if(getBadList().get(i).getPosX()==this.posX && getBadList().get(i).getPosY()==this.posY-1){
+								getBadList().remove(i);
 								score = score + 200;
 								System.out.println("Score : " + score);
-								elementsList.set(this.posX + (this.posY-1)*20, new Empty());
+								getElementsList().set(this.posX + (this.posY-1)*20, new Empty());
 							}
 						}
-						if(elementsList.get(this.posX + (this.posY-1)*20).getTYPE() == 5){
+						if(getElementsList().get(this.posX + (this.posY-1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
 						this.dir = 'S';
 					}
 					break;
 				case 'Q' :
-					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					for(int i = 0; i<badList.size(); i++){
-						if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-							badList.remove(i);
+					getElementsList().set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<getBadList().size(); i++){
+						if(getBadList().get(i).getPosX()==this.posX-1 && getBadList().get(i).getPosY()==this.posY){
+							getBadList().remove(i);
 							score = score + 200;
 							System.out.println("Score : " + score);
-							elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
+							getElementsList().set(this.posX-1 + (this.posY)*20, new Empty());
 						}
 					}
-					if(elementsList.get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
-						elementsList.set(this.posX + (this.posY)*20, new Empty());
+					if(getElementsList().get(this.posX-1 + (this.posY)*20).getPENETRABLE() == true && getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() != 4 && getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() != 6 && getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() != 12){
+						getElementsList().set(this.posX + (this.posY)*20, new Empty());
 						this.posX--;
-						elementsList.set(this.posX + (this.posY)*20, new Fire());
+						getElementsList().set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX-1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								badList.remove(i);
+						for(int i = 0; i<getBadList().size(); i++){
+							if(getBadList().get(i).getPosX()==this.posX-1 && getBadList().get(i).getPosY()==this.posY){
+								getBadList().remove(i);
 								score = score + 200;
 								System.out.println("Score : " + score);
-								elementsList.set(this.posX-1 + (this.posY)*20, new Empty());
+								getElementsList().set(this.posX-1 + (this.posY)*20, new Empty());
 							}
 						}
-						if(elementsList.get(this.posX-1 + (this.posY)*20).getTYPE() == 5){
+						if(getElementsList().get(this.posX-1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
 						}
 						this.dir = 'D';
 					}
 					break;
 				case 'S' :
-					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					for(int i = 0; i<badList.size(); i++){
-						if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-							badList.remove(i);
+					getElementsList().set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<getBadList().size(); i++){
+						if(getBadList().get(i).getPosX()==this.posX && getBadList().get(i).getPosY()==this.posY+1){
+							getBadList().remove(i);
 							score = score + 200;
 							System.out.println("Score : " + score);
-							elementsList.set(this.posX + (this.posY+1)*20, new Empty());
+							getElementsList().set(this.posX + (this.posY+1)*20, new Empty());
 						}
 					}
-					if(elementsList.get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 4 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 6 && elementsList.get(this.posX + (this.posY+1)*20).getTYPE() != 12){
-						elementsList.set(this.posX + (this.posY)*20, new Empty());
+					if(getElementsList().get(this.posX + (this.posY+1)*20).getPENETRABLE() == true && getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() != 4 && getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() != 6 && getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() != 12){
+						getElementsList().set(this.posX + (this.posY)*20, new Empty());
 						this.posY++;
-						elementsList.set(this.posX + (this.posY)*20, new Fire());
+						getElementsList().set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY+1 || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								badList.remove(i);
+						for(int i = 0; i<getBadList().size(); i++){
+							if(getBadList().get(i).getPosX()==this.posX && getBadList().get(i).getPosY()==this.posY+1){
+								getBadList().remove(i);
 								score = score + 200;
 								System.out.println("Score : " + score);
-								elementsList.set(this.posX + (this.posY+1)*20, new Empty());
+								getElementsList().set(this.posX + (this.posY+1)*20, new Empty());
 							}
 						}
-						if(elementsList.get(this.posX + (this.posY+1)*20).getTYPE() == 5){
+						if(getElementsList().get(this.posX + (this.posY+1)*20).getTYPE() == 5){
 							this.recup = true;
 						}
 						this.dir = 'Z';
 					}
 					break;
 				case 'D' :
-					elementsList.set(this.posX + (this.posY)*20, new Fire());
-					for(int i = 0; i<badList.size(); i++){
-						if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-							badList.remove(i);
+					getElementsList().set(this.posX + (this.posY)*20, new Fire());
+					for(int i = 0; i<getBadList().size(); i++){
+						if(getBadList().get(i).getPosX()==this.posX+1 && getBadList().get(i).getPosY()==this.posY){
+							getBadList().remove(i);
 							score = score + 200;
 							System.out.println("Score : " + score);
-							elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
+							getElementsList().set(this.posX+1 + (this.posY)*20, new Empty());
 						}
 					}
-					if(elementsList.get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 6 && elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
-						elementsList.set(this.posX + (this.posY)*20, new Empty());
+					if(getElementsList().get(this.posX+1 + (this.posY)*20).getPENETRABLE() == true && getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() != 4 && getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() != 6 && getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() != 12){
+						getElementsList().set(this.posX + (this.posY)*20, new Empty());
 						this.posX++;
-						elementsList.set(this.posX + (this.posY)*20, new Fire());
+						getElementsList().set(this.posX + (this.posY)*20, new Fire());
 					}
 					else{
-						for(int i = 0; i<badList.size(); i++){
-							if(badList.get(i).getPosX()==this.posX+1 && badList.get(i).getPosY()==this.posY || badList.get(i).getPosX()==this.posX && badList.get(i).getPosY()==this.posY){
-								badList.remove(i);
+						for(int i = 0; i<getBadList().size(); i++){
+							if(getBadList().get(i).getPosX()==this.posX+1 && getBadList().get(i).getPosY()==this.posY){
+								getBadList().remove(i);
 								score = score + 200;
 								System.out.println("Score : " + score);
-								elementsList.set(this.posX+1 + (this.posY)*20, new Empty());
+								getElementsList().set(this.posX+1 + (this.posY)*20, new Empty());
 							}
 						}
-						if(elementsList.get(this.posX+1 + (this.posY)*20).getTYPE() == 5){
+						if(getElementsList().get(this.posX+1 + (this.posY)*20).getTYPE() == 5){
 							this.recup = true;
 						}
 						this.dir = 'Q';
@@ -595,7 +612,7 @@ class Shoot implements Runnable{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				elementsList.set(this.posX + (this.posY)*20, new Empty());
+				getElementsList().set(this.posX + (this.posY)*20, new Empty());
 			}
 			Model.shooting=false;
 		}
@@ -605,31 +622,31 @@ class Shoot implements Runnable{
 
 		public void run() {
 			while(true){
-				for(int i = 0; i < badList.size(); i++){
+				for(int i = 0; i < getBadList().size(); i++){
 					Random rand = new Random();
 					int nombre = rand.nextInt(4);
-					if(elementsList.get(badList.get(i).getPosX() + (badList.get(i).getPosY())*20).getTYPE() != 7){
+					if(getElementsList().get(getBadList().get(i).getPosX() + (getBadList().get(i).getPosY())*20).getTYPE() != 7){
 						switch(nombre){
 						case 0:
-							if(Up(badList.get(i))){}
+							if(Up(getBadList().get(i))){}
 							else{
 								i--;
 							}
 							break;
 						case 1:
-							if(Left(badList.get(i))){}
+							if(Left(getBadList().get(i))){}
 							else{
 								i--;
 							}
 							break;
 						case 2:
-							if(Right(badList.get(i))){}
+							if(Right(getBadList().get(i))){}
 							else{
 								i--;
 							}
 							break;
 						case 3:
-							if(Down(badList.get(i))){}
+							if(Down(getBadList().get(i))){}
 							else{
 								i--;
 							}
@@ -637,11 +654,11 @@ class Shoot implements Runnable{
 						}
 					}
 					else{
-						badList.get(i).setAlive(false);
+						getBadList().get(i).setAlive(false);
 					}
 				}
 				try {
-					Thread.sleep(250);
+					Thread.sleep(260);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
