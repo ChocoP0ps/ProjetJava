@@ -58,14 +58,13 @@ public class Model extends Observable implements IModel {
 	public void setElements(){
 		char[] elements = this.map.toCharArray();
 		this.open = false;
+		int cpt = 0;
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elements[x+(20*y)]){
 				case 'm' :
 					Deamon bad = new Deamon();
-					Random rand = new Random();
-					int typeMonster = rand.nextInt(4);
-					switch(typeMonster){
+					switch(cpt){
 					case 0:
 						this.elementsList.set(x+(20*y),bad = new Arbarr());
 						bad.setPosX(x);
@@ -91,7 +90,9 @@ public class Model extends Observable implements IModel {
 						this.badList.add(bad);
 						break;
 					}
+					cpt++;
 					break;
+					
 				case 'b' :
 					this.elementsList.set(x+(20*y),new BoneWall());
 					break;
