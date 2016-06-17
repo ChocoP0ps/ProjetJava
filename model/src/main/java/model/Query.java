@@ -7,10 +7,10 @@ public class Query {
 	}
 	
 	public String addNameQuery(String name, int score){
-		return "INSERT INTO `player`(`PSEUDO`, `SCORE`) VALUES (" + name + "," + score + ")";
+		return "INSERT INTO `player`(`PSEUDO`, `SCORE`) VALUES ( \" " + name + "\"," + score + ")";
 	}
 	
 	public String getNameByBestScore(){
-		return "SELECT * FROM player ORDER BY SCORE";
+		return "SELECT * FROM player ORDER BY SCORE DESC";
 	}
 }
