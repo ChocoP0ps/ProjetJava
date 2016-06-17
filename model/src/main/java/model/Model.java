@@ -21,12 +21,10 @@ public class Model extends Observable implements IModel {
 	private boolean open;
 	static boolean shooting;
 	private int score;
-	private int first;
 	private final DAO dao;
 	
 	public Model(int level) {
 		this.dao = new DAO();
-		this.first = 0;
 		this.name = "";
 		this.score = 0;
 		this.level = level;
