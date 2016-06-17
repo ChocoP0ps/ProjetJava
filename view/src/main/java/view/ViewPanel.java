@@ -195,8 +195,8 @@ class ViewPanel extends JPanel implements Observer {
 		this.name = this.viewFrame.getModel().getName();
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+		Font font = new Font("07x5", Font.BOLD, 20);
 		if(this.viewFrame.getModel().getLevel() == 1){
-			Font font = new Font("07x5", Font.BOLD, 20);
 			graphics.setFont(font);
 			for(int i = 0; i<5;i++){
 				graphics.setColor(Color.MAGENTA);
@@ -209,6 +209,10 @@ class ViewPanel extends JPanel implements Observer {
 			graphics.setFont(font);
 			graphics.drawString("Lorann", 456, 256);
 		}
+		font = new Font("07x5", Font.BOLD, 32);
+		graphics.setFont(font);
+		graphics.setColor(Color.yellow);
+		graphics.drawString("Score : " + this.viewFrame.getModel().getScore(), 192, 800);
 		this.printMap(graphics);
 	}
 

@@ -131,7 +131,7 @@ public class ViewFrame extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(1280,800);
+		this.setSize(1280,850);
 		this.setLocationRelativeTo(null);
 	}
 
