@@ -643,52 +643,91 @@ class Shoot implements Runnable{
 	}
 	
 	class MouvEnemy implements Runnable{
+		private double distance;
 
 		public void run() {
 			while(true){
 				for(int i = 0; i < getBadList().size(); i++){
-					Random rand = new Random();
-					int nombre = rand.nextInt(4);
-					if(getElementsList().get(getBadList().get(i).getPosX() + (getBadList().get(i).getPosY())*20).getTYPE() != 7){
-						switch(nombre){
-						case 0:
-							if(Up(getBadList().get(i))){}
-							else{
-								i--;
-							}
-							break;
-						case 1:
-							if(Left(getBadList().get(i))){}
-							else{
-								i--;
-							}
-							break;
-						case 2:
-							if(Right(getBadList().get(i))){}
-							else{
-								i--;
-							}
-							break;
-						case 3:
-							if(Down(getBadList().get(i))){}
-							else{
-								i--;
-							}
-							break;
-						}
-						modifyArray();
+					this.distance = Math.sqrt(Math.pow((getBadList().get(i).getPosX() - lorann.getPosX()),2) + Math.pow((getBadList().get(i).getPosY() - lorann.getPosY()), 2));
+					if(this.distance>4){
+						i = mouvRandom(i);
 					}
 					else{
-						getBadList().get(i).setAlive(false);
-						modifyArray();
+						if((getBadList().get(i).getPosX() - lorann.getPosX()) < (getBadList().get(i).getPosY() - lorann.getPosY())){
+							if(lorann.getPosY() < getBadList().get(i).getPosY()){
+								if(Up(getBadList().get(i))){}
+								else{
+									i = mouvRandom(i);
+								}
+							}
+							else{
+								if(Down(getBadList().get(i))){}
+								else{
+									i = mouvRandom(i);
+								}
+							}
+						}
+						else{
+							if(lorann.getPosX() < getBadList().get(i).getPosX()){
+								if(Left(getBadList().get(i))){}
+								else{
+									i = mouvRandom(i);
+								}
+							}
+							else{
+								if(Right(getBadList().get(i))){}
+								else{
+									i = mouvRandom(i);
+								}
+							}
+						}
+					}
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
-				try {
-					Thread.sleep(260);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
+		}
+
+		private int mouvRandom(int i){
+			Random rand = new Random();
+			int nombre = rand.nextInt(4);
+			if(getElementsList().get(getBadList().get(i).getPosX() + (getBadList().get(i).getPosY())*20).getTYPE() != 7){
+				switch(nombre){
+				case 0:
+					if(Up(getBadList().get(i))){}
+					else{
+						i--;
+					}
+					break;
+				case 1:
+					if(Left(getBadList().get(i))){}
+					else{
+						i--;
+					}
+					break;
+				case 2:
+					if(Right(getBadList().get(i))){}
+					else{
+						i--;
+					}
+					break;
+				case 3:
+					if(Down(getBadList().get(i))){}
+					else{
+						i--;
+					}
+					break;
+				}
+				modifyArray();
+			}
+			else{
+				getBadList().get(i).setAlive(false);
+				modifyArray();
+			}
+			return i;
 		}
 	}
 }
