@@ -192,27 +192,22 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		if(this.viewFrame.getModel().getLevel() == 1 && this.first == 1){
-			this.first = 0;
-			this.name = this.viewFrame.printMessage();
-		}
-		if(this.viewFrame.getModel().getLevel() != 1)
-			this.first = 1;
+		this.name = this.viewFrame.getModel().getName();
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 		if(this.viewFrame.getModel().getLevel() == 1){
-			Font font = new Font("07x5", Font.BOLD, 35);
+			Font font = new Font("07x5", Font.BOLD, 20);
 			graphics.setFont(font);
-			if(this.name != "")
+			for(int i = 0; i<5;i++){
 				graphics.setColor(Color.MAGENTA);
-				graphics.drawString(this.name, 510, 310);
+				graphics.drawString(this.viewFrame.getModel().loadBestName(i), 510, 310+(60*i));
 				graphics.setColor(Color.yellow);
-				graphics.drawString(Integer.toString(this.viewFrame.getModel().getScore()), 510, 350);
-				font = new Font("07x5", Font.BOLD, 80);
-				graphics.setColor(Color.cyan);
-				graphics.setFont(font);
-				graphics.drawString("Lorann", 456, 256);
-				
+				graphics.drawString(Integer.toString(this.viewFrame.getModel().loadBestScore(i)), 510, 350+(60*i));
+			}
+			font = new Font("07x5", Font.BOLD, 80);
+			graphics.setColor(Color.cyan);
+			graphics.setFont(font);
+			graphics.drawString("Lorann", 456, 256);
 		}
 		this.printMap(graphics);
 	}
