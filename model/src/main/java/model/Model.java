@@ -287,7 +287,7 @@ public class Model extends Observable implements IModel {
 		this.badList = badList;
 	}
 
-	public void modifyArray(){
+	public synchronized void modifyArray(){
 		int newMap = 0;
 		char[] elements = this.getMap().toCharArray();
 		for(int y = 0; y<12; y++){
