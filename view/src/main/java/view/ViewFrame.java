@@ -141,8 +141,8 @@ public class ViewFrame extends JFrame implements KeyListener {
 	 * @param message
 	 *          the message
 	 */
-	public void printMessage(final String message) {
-		JOptionPane.showMessageDialog(null, message);
+	public String printMessage() {
+		return JOptionPane.showInputDialog(null, "Rentrez votre pseudo !", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/*
