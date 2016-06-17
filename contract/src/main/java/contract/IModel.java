@@ -49,4 +49,14 @@ public interface IModel {
 	int getLevel();
 	
 	int getScore();
+	
+	String getName();
+	
+	void setName(String name);
+	
+	void addName();
+	
+	int loadBestScore(int place);
+	
+	String loadBestName(int place);
 }

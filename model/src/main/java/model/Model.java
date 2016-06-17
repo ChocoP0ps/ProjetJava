@@ -21,8 +21,13 @@ public class Model extends Observable implements IModel {
 	private boolean open;
 	static boolean shooting;
 	private int score;
+	private int first;
+	private final DAO dao;
 	
 	public Model(int level) {
+		this.dao = new DAO();
+		this.first = 0;
+		this.name = "";
 		this.score = 0;
 		this.level = level;
 		Model.shooting = false;
@@ -52,10 +57,29 @@ public class Model extends Observable implements IModel {
 
 	public void loadMap(int level) {
 		this.level = level;
-		final DAO dao = new DAO();
-		dao.open();
+		this.dao.open();
 		this.setMap(dao.getMap(this.level));
-		dao.close();
+		this.dao.close();
+	}
+	
+	public void addName(){
+		this.dao.open();
+		this.dao.addName(this.name,this.score);
+		this.dao.close();
+	}
+	
+	public String loadBestName(int place){
+		this.dao.open();
+		String bestName = this.dao.getNameBestScore(place);
+		this.dao.close();
+		return bestName;
+	}
+	
+	public int loadBestScore(int place){
+		this.dao.open();
+		int bestScore = this.dao.getBestScore(place);
+		this.dao.close();
+		return bestScore;
 	}
 	
 	public void setElements(){
@@ -652,9 +676,11 @@ class Shoot implements Runnable{
 							}
 							break;
 						}
+						modifyArray();
 					}
 					else{
 						getBadList().get(i).setAlive(false);
+						modifyArray();
 					}
 				}
 				try {
@@ -662,7 +688,6 @@ class Shoot implements Runnable{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				modifyArray();
 			}
 		}
 	}

@@ -50,4 +50,40 @@ public class DAO {
 		}
 		return "Failed";
 	}
+	
+	public void addName(String name, int score){
+		try {
+			this.statement.executeUpdate(query.addNameQuery(name, score));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getBestScore(int place){
+		try {
+			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());
+			if(rs.first()==true){
+				rs.absolute(place+1);
+			}
+			return rs.getInt("SCORE");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public String getNameBestScore(int place){
+		try {
+			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());
+			if(rs.first()==true){
+				rs.absolute(place+1);
+			}
+			return rs.getString("PSEUDO");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}
 }

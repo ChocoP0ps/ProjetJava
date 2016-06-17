@@ -16,6 +16,8 @@ public class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
+	private int first = 0;
 
 	/**
 	 * Instantiates a new controller.
@@ -98,6 +100,13 @@ public class Controller implements IController {
 				break;
 		}
 		this.model.modifyArray();
+		if(this.model.getLevel() == 1 && this.first == 1){
+			this.first = 0;
+			this.model.setName(this.view.printMessage());
+			this.model.addName();
+		}
+		if(this.model.getLevel() != 1)
+			this.first = 1;
 	}
 
 }
