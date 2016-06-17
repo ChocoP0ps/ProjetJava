@@ -275,7 +275,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
-	public synchronized ArrayList<IElement> getElementsList() {
+	public ArrayList<IElement> getElementsList() {
 		return elementsList;
 	}
 	
@@ -653,7 +653,7 @@ class Shoot implements Runnable{
 						i = mouvRandom(i);
 					}
 					else{
-						if((getBadList().get(i).getPosX() - lorann.getPosX()) < (getBadList().get(i).getPosY() - lorann.getPosY())){
+						if(Math.abs(getBadList().get(i).getPosX() - lorann.getPosX()) < Math.abs(getBadList().get(i).getPosY() - lorann.getPosY())){
 							if(lorann.getPosY() < getBadList().get(i).getPosY()){
 								if(Up(getBadList().get(i))){}
 								else{
@@ -682,6 +682,7 @@ class Shoot implements Runnable{
 							}
 						}
 					}
+					modifyArray();
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
