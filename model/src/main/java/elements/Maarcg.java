@@ -1,6 +1,6 @@
 package elements;
 
-public class Maarcg extends Deamon {
+public class Maarcg extends Daemon {
 	private int TYPE = 11;
 	private int PosX;
 	private int PosY;

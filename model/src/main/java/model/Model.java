@@ -11,170 +11,170 @@ import elements.*;
 
 public class Model extends Observable implements IModel {
 	
-	private String name;
-	private String map;
-	private int level;
-	private ArrayList<IElement> elementsList = new ArrayList<IElement>();
-	private ArrayList<Deamon> badList = new ArrayList<Deamon>();
-	private ArrayList<Purse> purseList = new ArrayList<Purse>();
-	private Hero lorann;
-	private boolean open;
-	static boolean shooting;
-	private int score;
-	private final DAO dao;
+	private String name;    	//Player's name
+	private String map;     	//String of characters which define all elements of the map
+	private int level;			//Number of level
+	private ArrayList<IElement> elementsList = new ArrayList<IElement>();		//Array which contain all Object of the map
+	private ArrayList<Daemon> badList = new ArrayList<Daemon>();				//Array which contain all Daemon of the map
+	private ArrayList<Purse> purseList = new ArrayList<Purse>();				//Array which contain all Purse of the map
+	private Hero lorann;		//Object Lorann
+	private boolean open;		//boolean which show if the level's door is open
+	static boolean shooting;	//boolean which show if Lorann's shooting
+	private int score;			//Score
+	private final DAO dao;		//Object to communicate with the BDD
 	
 	public Model(int level) {
-		this.dao = new DAO();
-		this.name = "";
-		this.score = 0;
-		this.level = level;
-		Model.shooting = false;
-		this.open = false;
-		this.loadMap(this.level);
-		for(int i = 0; i<240;i++){
+		this.dao = new DAO();		//New connection
+		this.name = "";				//Name undefined
+		this.score = 0;				//Score to 0
+		this.level = level;			//We can start at the level that we want
+		Model.shooting = false;		//Nobody's shooting
+		this.open = false;			//The door is close
+		this.loadMap(this.level);	//Load the map in the BDD with the level
+		for(int i = 0; i<240;i++){	//Fill the array with empty object
 			this.elementsList.add(i,new Empty());
 		}
-		this.setElements();
-		Thread mouvEnemy = new Thread(new MouvEnemy());
-		mouvEnemy.start();
+		this.setElements();			//Fill the array with the rights elements
+		Thread mouvEnemy = new Thread(new MouvEnemy());							//New thread for the moves of the daemons
+		mouvEnemy.start();			//Start of the moves
 	}
 	
-	public String getMap() {
+	public String getMap() {		//Getters of Map
 		return this.map;
 	}
 	
-	public int getLevel(){
+	public int getLevel(){			//Getters of Level
 		return this.level;
 	}
 	
-	private void setMap(final String map) {
+	private void setMap(final String map) {		//Setters of Map
 		this.map = map;
-		this.setChanged();
+		this.setChanged();			//Update to the View
 		this.notifyObservers();
 	}
 
-	public void loadMap(int level) {
+	public void loadMap(int level) {			//Load the map inside the BDD with the level
 		this.level = level;
-		this.dao.open();
+		this.dao.open();			//Open the connection
 		this.setMap(dao.getMap(this.level));
-		this.dao.close();
+		this.dao.close();			//Close the connection
 	}
 	
-	public void addName(){
-		this.dao.open();
+	public void addName(){			//Add your name in the BDD
+		this.dao.open();			//Open the connection
 		this.dao.addName(this.name,this.score);
-		this.dao.close();
+		this.dao.close();			//Close the connection
 	}
 	
-	public String loadBestName(int place){
-		this.dao.open();
-		String bestName = this.dao.getNameBestScore(place);
-		this.dao.close();
+	public String loadBestName(int place){		//Load the name of the score at the place
+		this.dao.open();			//Open the connection
+		String bestName = this.dao.getNameBestScore(place);	
+		this.dao.close();			//Close the connection
 		return bestName;
 	}
 	
-	public int loadBestScore(int place){
-		this.dao.open();
+	public int loadBestScore(int place){		//Load the score of the person at the place
+		this.dao.open();			//Open the connection
 		int bestScore = this.dao.getBestScore(place);
-		this.dao.close();
+		this.dao.close();			//Close the connection
 		return bestScore;
 	}
 	
-	public void setElements(){
-		if(this.level==2){
+	public void setElements(){					//Setter of the Array of elements
+		if(this.level==2){			//Reset of the score
 			this.score = 0;
 		}
-		char[] elements = this.map.toCharArray();
+		char[] elements = this.map.toCharArray();	//Converting the String map in char array
 		this.open = false;
-		int cpt = 0;
-		for(int y = 0; y<12; y++){
+		int cpt = 0;				//Verification that there is no 2 times the same daemon
+		for(int y = 0; y<12; y++){					//sweep of the map in X and Y
 			for (int x =0; x<20; x++){
-				switch(elements[x+(20*y)]){
-				case 'm' :
-					Deamon bad = new Deamon();
+				switch(elements[x+(20*y)]){			//Switch of the character in the char array of the map
+				case 'm' :							//For every letter, set the associated object
+					Daemon bad = new Daemon();
 					switch(cpt){
 					case 0:
-						this.elementsList.set(x+(20*y),bad = new Arbarr());
-						bad.setPosX(x);
+						this.elementsList.set(x+(20*y),bad = new Arbarr());		//Setting the object in the case of the array
+						bad.setPosX(x);				//Setting the position of the daemon
 						bad.setPosY(y);
-						this.badList.add(bad);
+						this.badList.add(bad);		//Adding the daemon in the daemon array
 						break;
 					case 1:
-						this.elementsList.set(x+(20*y),bad = new Cargyv());
-						bad.setPosX(x);
+						this.elementsList.set(x+(20*y),bad = new Cargyv());		//Setting the object in the case of the array
+						bad.setPosX(x);				//Setting the position of the daemon
 						bad.setPosY(y);
-						this.badList.add(bad);
+						this.badList.add(bad);		//Adding the daemon in the daemon array
 						break;
 					case 2:
-						this.elementsList.set(x+(20*y),bad = new Kyracj());
-						bad.setPosX(x);
+						this.elementsList.set(x+(20*y),bad = new Kyracj());		//Setting the object in the case of the array
+						bad.setPosX(x);				//Setting the position of the daemon
 						bad.setPosY(y);
-						this.badList.add(bad);
+						this.badList.add(bad);		//Adding the daemon in the daemon array
 						break;
 					case 3:
-						this.elementsList.set(x+(20*y),bad = new Maarcg());
-						bad.setPosX(x);
+						this.elementsList.set(x+(20*y),bad = new Maarcg());		//Setting the object in the case of the array
+						bad.setPosX(x);				//Setting the position of the daemon
 						bad.setPosY(y);
-						this.badList.add(bad);
+						this.badList.add(bad);		//Adding the daemon in the daemon array
 						break;
 					default:
-						this.elementsList.set(x+(20*y),new Empty());
+						this.elementsList.set(x+(20*y),new Empty());			//If all the daemon have spawn, set an object empty
 						break;
 					}
 					cpt++;
 					break;
 					
-				case 'b' :
+				case 'b' :							//For every letter, set the associated object
 					this.elementsList.set(x+(20*y),new BoneWall());
 					break;
-				case 'h' :
+				case 'h' :							//For every letter, set the associated object
 					this.elementsList.set(x+(20*y),new HorizontalWall());
 					break;
-				case 'v' :
+				case 'v' :							//For every letter, set the associated object
 					this.elementsList.set(x+(20*y),new VerticalWall());
 					break;
-				case 'd' :
+				case 'd' :							//For every letter, set the associated object
 					this.elementsList.set(x+(20*y),new Door(this.setNextLevel()));
 					break;
-				case 'n' :
+				case 'n' :							//For every letter, set the associated object
 					this.elementsList.set(x+(20*y),new Empty());
 					break;
-				case 'c' :
-					if(this.open){
+				case 'c' :							//For every letter, set the associated object
+					if(this.open){					//Verify is the map is open
 						this.elementsList.set(x+(20*y),new Empty());
 					}
 					else{
 						this.elementsList.set(x+(20*y),new CrystalBall());
 					}
 					break;
-				case 's' :
-					this.elementsList.set(x+(20*y),this.lorann = new Hero());
+				case 's' :							//For every letter, set the associated object
+					this.elementsList.set(x+(20*y),this.lorann = new Hero());	//Set the Hero at the spawn in the beginning of the level
 					this.lorann.setPosX(x);
 					this.lorann.setPosY(y);
 					break;
-				case 'p' :
+				case 'p' :							//For every letter, set the associated object
 					Purse purse;
 					this.elementsList.set(x+(20*y),purse = new Purse());
 					purse.setPosX(x);
 					purse.setPosY(y);
-					this.purseList.add(purse);
+					this.purseList.add(purse);		//Add the purse with its position in the purse's array
 				}
 			}
 		}
 	}
 	
-	public int setNextLevel(){
-		if(this.level == 6)
+	public int setNextLevel(){		//If the player come to a door, setting the next level
+		if(this.level == 6)			//If this is the last level, come to the first level
 			return 1;
 		else
 			return (this.level + 1);
 	}
 
-	public Hero getLorann() {
+	public Hero getLorann() {		//Getter of the hero
 		return lorann;
 	}
 	
-	public boolean Up(Deamon mobile){
+	public boolean Up(Daemon mobile){		//Move the daemon up and return true if there is nothing impenetrable there
 		if(this.getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getPENETRABLE() == true && getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()-1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() - 1);
 			return true;
@@ -188,7 +188,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public boolean Down(Deamon mobile){
+	public boolean Down(Daemon mobile){		//Move the daemon down and return true if there is nothing impenetrable there
 		if(this.getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getPENETRABLE() == true  && getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX() + (mobile.getPosY()+1)*20).getTYPE() != 12){
 			mobile.setPosY(mobile.getPosY() + 1);
 			return true;
@@ -202,7 +202,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public boolean Left(Deamon mobile){
+	public boolean Left(Daemon mobile){		//Move the daemon left and return true if there is nothing impenetrable there
 		if(this.getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getPENETRABLE() == true && getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX()-1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() - 1);
 			return true;
@@ -216,7 +216,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public boolean Right(Deamon mobile){
+	public boolean Right(Daemon mobile){		//Move the daemon right and return true if there is nothing impenetrable there
 		if(this.getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getPENETRABLE() == true && getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 4 && getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 6 && getElementsList().get(mobile.getPosX()+1 + (mobile.getPosY())*20).getTYPE() != 12){
 			mobile.setPosX(mobile.getPosX() + 1);
 			return true;
@@ -230,7 +230,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public void Up(){
+	public void Up(){		//Move the hero up if there is nothing impenetrable there
 		if(this.elementsList.get(this.lorann.getPosX() + (this.lorann.getPosY()-1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() - 1);
 		}
@@ -239,7 +239,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public void Down(){
+	public void Down(){		//Move the hero down if there is nothing impenetrable there
 		if(this.getElementsList().get(this.lorann.getPosX() + (this.lorann.getPosY()+1)*20).getPENETRABLE() == true){
 			this.lorann.setPosY(this.lorann.getPosY() + 1);
 		}
@@ -248,7 +248,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public void Left(){
+	public void Left(){		//Move the hero left if there is nothing impenetrable there
 		if(this.getElementsList().get(this.lorann.getPosX()-1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
 			this.lorann.setPosX(this.lorann.getPosX() - 1);
 		}
@@ -257,7 +257,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public void Right(){
+	public void Right(){		//Move the hero right if there is nothing impenetrable there
 		if(this.getElementsList().get(this.lorann.getPosX()+1 + (this.lorann.getPosY())*20).getPENETRABLE() == true){
 			this.lorann.setPosX(this.lorann.getPosX() + 1);
 		}
@@ -266,22 +266,22 @@ public class Model extends Observable implements IModel {
 		}
 	}
 	
-	public void shoot(char dir){
+	public void shoot(char dir){		//Start the thread shoot if the hero is not shooting
 		if(Model.shooting == false){
 			Thread shot = new Thread(new Shoot(dir));
 			shot.start();
 		}
 	}
 
-	public ArrayList<IElement> getElementsList() {
+	public ArrayList<IElement> getElementsList() {			//Getter of the element's array
 		return elementsList;
 	}
 	
-	public synchronized ArrayList<Deamon> getBadList() {
+	public synchronized ArrayList<Daemon> getBadList() {	//Getter synchronized of the daemon's array (only one thread can use this method at a time)
 		return badList;
 	}
 
-	public void setBadList(ArrayList<Deamon> badList) {
+	public void setBadList(ArrayList<Daemon> badList) {		//Setter of the daemon's array
 		this.badList = badList;
 	}
 

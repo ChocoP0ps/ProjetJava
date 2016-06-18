@@ -1,6 +1,6 @@
 package elements;
 
-public class Kyracj extends Deamon {
+public class Kyracj extends Daemon {
 	private int TYPE = 8;
 	private int PosX;
 	private int PosY;

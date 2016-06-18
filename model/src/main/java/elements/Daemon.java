@@ -1,6 +1,6 @@
 package elements;
 
-public class Deamon extends Mobile {
+public class Daemon extends Mobile {
 
 	private boolean PENETRABLE = false;
 	private int PosX;

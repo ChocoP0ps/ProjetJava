@@ -1,6 +1,6 @@
 package elements;
 
-public class Arbarr extends Deamon{
+public class Arbarr extends Daemon{
 	private int TYPE = 10;
 	private int PosX;
 	private int PosY;

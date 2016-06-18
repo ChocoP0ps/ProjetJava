@@ -1,6 +1,6 @@
 package elements;
 
-public class Cargyv extends Deamon {
+public class Cargyv extends Daemon {
 	private int TYPE = 9;
 	private int PosX;
 	private int PosY;
