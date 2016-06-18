@@ -3,60 +3,40 @@ package contract;
 import java.util.ArrayList;
 import java.util.Observable;
 
-/**
- * The Interface IModel.
- *
- * @author Jean-Aymeric Diet
- */
-public interface IModel {
 
-	/**
-	 * Gets the message.
-	 *
-	 * @return the message
-	 */
-	String getMap();
+public interface IModel {			//Interface implemented by the Model of the MVC
 
-	/**
-	 * Load the message.
-	 *
-	 * @param key
-	 *          the key
-	 */
-	void loadMap(int level);
+	String getMap();				//Return the map
 
-	/**
-	 * Gets the observable.
-	 *
-	 * @return the observable
-	 */
-	Observable getObservable();
-	
-	public ArrayList<IElement> getElementsList();
+	void loadMap(int level);		//Load a new map with the level 'level'
 
-	void Down();
+	Observable getObservable();		//Get the observable object Model
+	
+	public ArrayList<IElement> getElementsList();			//Get the element's array
 
-	void Up();
+	void Down();								//The hero go down
 
-	void Right();
+	void Up();									//The hero go up
 
-	void Left();
+	void Right();								//The hero go right
 
-	void modifyArray();
+	void Left();								//The hero go left
+
+	void modifyArray();							//Update the element's array
 	
-	void shoot(char dir);
+	void shoot(char dir);						//Make the hero shoot at the direction 'dir'
 	
-	int getLevel();
+	int getLevel();								//Getter of the level
 	
-	int getScore();
+	int getScore();								//Getter of the score
 	
-	String getName();
+	String getName();							//Getter of the name
 	
-	void setName(String name);
+	void setName(String name);					//Setter of the name
 	
-	void addName();
+	void addName();								//Add the name with its linked score to the BDD
 	
-	int loadBestScore(int place);
+	int loadBestScore(int place);				//Load the score at the BestScore's place 'place'
 	
-	String loadBestName(int place);
+	String loadBestName(int place);				//Load the name at the BestScore's place 'place'
 }

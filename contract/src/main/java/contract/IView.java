@@ -1,19 +1,9 @@
 package contract;
 
 
-/**
- * The Interface IView.
- *
- * @author Jean-Aymeric Diet
- */
-public interface IView {
+public interface IView {						//Interface implemented by the view of the MVC
 
-	/**
-	 * Prints the message.
-	 *
-	 * @param message
-	 *          the message
-	 */
-	String printMessage();
-	void closeWindow();
+	String printMessage();			//Brings a Pop-Up which request the Player's Pseudo	
+	
+	void closeWindow();				//Exit the game
 }

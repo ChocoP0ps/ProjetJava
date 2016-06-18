@@ -6,11 +6,10 @@ import view.View;
 
 public abstract class Main {
 
-	public static void main(final String[] args) {
-		final Model model = new Model(1);
-		final View view = new View(model);
-		final Controller controller = new Controller(view, model);
-		view.setController(controller);
-		controller.control();
+	public static void main(final String[] args) {						//Class to start at the beginning
+		final Model model = new Model(1);								//Creating the model at the level 1
+		final View view = new View(model);								//Creating the view with the previous model
+		final Controller controller = new Controller(view, model);		//Creating the controller with the previous model and view
+		view.setController(controller);									//Setting the previous controller to the view
 	}
 }

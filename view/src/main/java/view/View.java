@@ -9,37 +9,19 @@ import contract.IController;
 import contract.IModel;
 import contract.IView;
 
-/**
- * The Class View.
- *
- * @author Jean-Aymeric Diet
- */
-public class View implements IView, Runnable {
 
-	/** The frame. */
-	private final ViewFrame viewFrame;
+public class View implements IView, Runnable {					//Class view of the MVC design pattern
 
-	
+	private final ViewFrame viewFrame;				//Object ViewFrame
 
-	/**
-	 * Instantiates a new view.
-	 *
-	 * @param model
-	 *          the model
-	 */
-	public View(final IModel model) {
-		this.viewFrame = new ViewFrame(model,"Lorann");
-		SwingUtilities.invokeLater(this);
+
+	public View(final IModel model) {							//Constructor of the view
+		this.viewFrame = new ViewFrame(model,"Lorann");			//Instantiation of the JFrame
+		SwingUtilities.invokeLater(this);						//Execute the view's thread 
 	}
 
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode
-	 *          the key code
-	 * @return the controller order
-	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+
+	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {		//Read the key pressed end convert it into a ControllerOrder
 		switch (keyCode) {
 			case KeyEvent.VK_LEFT:
 				return ControllerOrder.Left;
@@ -64,35 +46,19 @@ public class View implements IView, Runnable {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IView#printMessage(java.lang.String)
-	 */
-	public String printMessage() {
+	public String printMessage() {				//Start the ViewFrame's method printMessage()
 		return this.viewFrame.printMessage();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Runnable#run()
-	 */
-	public void run() {
+	public void run() {							//Show the window
 		this.viewFrame.setVisible(true);
 	}
 	
-	public void closeWindow(){
+	public void closeWindow(){					//Close the window
 		this.viewFrame.dispose();
 	}
 
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller
-	 *          the new controller
-	 */
-	public void setController(final IController controller) {
+	public void setController(final IController controller) {			//Setter of the Controller
 		this.viewFrame.setController(controller);
 	}
 }

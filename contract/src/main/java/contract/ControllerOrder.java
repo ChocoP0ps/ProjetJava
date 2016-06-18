@@ -1,21 +1,25 @@
 package contract;
 
-/**
- * The Enum ControllerOrder.
- *
- * @author Jean-Aymeric Diet
- */
-public enum ControllerOrder {
 
-	/** The English. */
-	Right, /** The French. */
-	Left, /** The Deutch. */
-	Up, /** The Indonesia. */
+public enum ControllerOrder {			//Enumeration of the possible action to perform at a pressing key
+
+	Right,
+
+	Left,
+
+	Up,
+
 	Down,
+	
 	Nothing,
+	
 	Z,
+	
 	Q,
+	
 	S,
+	
 	D,
+	
 	Exit
 }
