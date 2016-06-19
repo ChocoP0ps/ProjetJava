@@ -58,6 +58,40 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elementsList.get(x+(20*y)).getTYPE()){			//for each element's type, print the associated sprite
+				case 5 :				//The sprite change with the other thread
+					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
+					break;
+				case 7 :				//The sprite change with the other thread
+					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame);
+					break;
+				case 8:
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_1.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 9:
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_2.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 10:
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_3.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 11:
+					try {
+						graphics.drawImage(ImageIO.read(new File("sprite/monster_4.png")), (x*64), (y*64), 64, 64, viewFrame);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
 				case 1 :
 					try {
 						graphics.drawImage(ImageIO.read(new File("sprite/bone.png")), (x*64), (y*64), 64, 64, viewFrame);
@@ -102,40 +136,7 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 						e.printStackTrace();
 					}
 					break;
-				case 5 :				//The sprite change with the other thread
-					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
-					break;
-				case 7 :				//The sprite change with the other thread
-					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame);
 				case 0 :
-					break;
-				case 8:
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/monster_1.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 9:
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/monster_2.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 10:
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/monster_3.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					break;
-				case 11:
-					try {
-						graphics.drawImage(ImageIO.read(new File("sprite/monster_4.png")), (x*64), (y*64), 64, 64, viewFrame);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
 					break;
 				case 12:	
 					try {
@@ -217,7 +218,7 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 					break;
 				}
 				try {
-					Thread.sleep(100);						//Every 100ms
+					Thread.sleep(90);						//Every 100ms
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
