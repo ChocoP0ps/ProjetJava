@@ -58,9 +58,6 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 		for(int y = 0; y<12; y++){
 			for (int x =0; x<20; x++){
 				switch(elementsList.get(x+(20*y)).getTYPE()){			//for each element's type, print the associated sprite
-				case 5 :				//The sprite change with the other thread
-					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
-					break;
 				case 7 :				//The sprite change with the other thread
 					graphics.drawImage(spriteFire, (x*64), (y*64), 64, 64, viewFrame);
 					break;
@@ -91,6 +88,9 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					break;
+				case 5 :				//The sprite change with the other thread
+					graphics.drawImage(spriteLorann, (x*64), (y*64), 64, 64, viewFrame);
 					break;
 				case 1 :
 					try {
@@ -155,6 +155,7 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 		this.name = this.viewFrame.getModel().getName();				//Setting the name with the model's attribute 'name'
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());		//Print a black rectangle which cover all the window
+		this.printMap(graphics);										//Print the map on the window
 		Font font = new Font("07x5", Font.BOLD, 20);					//Define the font for the Best Scores
 		if(this.viewFrame.getModel().getLevel() == 1){					//If it is the first level
 			graphics.setFont(font);										//Set the font defined previously
@@ -173,7 +174,6 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 		graphics.setFont(font);											//Set the font
 		graphics.setColor(Color.yellow);								//In yellow
 		graphics.drawString("Score : " + this.viewFrame.getModel().getScore(), 192, 800);			//Print "The score : " + The player's score at the bottom of the window
-		this.printMap(graphics);										//Print the map on the window
 	}
 
 	class AnimFire implements Runnable{				//Thread which change the fireball's sprite
