@@ -10,14 +10,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- * The Class ModelTest.
- *
- * @author Jean-Aymeric Diet
- */
+
 public class ModelTest {
-	/* 
+	 
 	private Model model;
+	private int level;
+	
 	 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -29,7 +27,8 @@ public class ModelTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		//this.model = new Model(1);
+		this.model = new Model(1);
+		this.level = 1;
 	}
 	
 	@After
@@ -38,13 +37,17 @@ public class ModelTest {
 
 	@Test
 	public void testGetMap() {
-		//Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbnnvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbvnnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbncvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnmnnvnnnnnnnnvnnmnvbhhhhbhhhhhhhhbhhhhbvnnnmnnnnnnnnnnmnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
 	}
 	
 	@Test
 	public void testGetMapString() {
-		//sthis.model.loadMap(1);
-		//Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbnnvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnnnnvnnnnnnnnvnnnnvbhhhhbhhhhhhhhbhhhhbvnnnnnnnnnnnnnnnnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
-	}*/
-
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbncvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnmnnvnnnnnnnnvnnmnvbhhhhbhhhhhhhhbhhhhbvnnnmnnnnnnnnnnmnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
+	}
+	
+	@Test
+	public void setNextLevel(){
+		Assert.assertEquals(2,this.model.setNextLevel());
+		}
 }
+
