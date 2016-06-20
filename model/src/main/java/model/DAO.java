@@ -2,25 +2,25 @@ package model;
 
 import java.sql.*;
 
-public class DAO {		//Class of connection with the BDD
-	private static String URL = "jdbc:mysql://localhost:3306/projetjava?autoReconnect=true&useSSL=false";		//URL of the BDD
-	private static String LOGIN = "SuperUtilisateur";			//Login to connect to the BDD
-	private static String PASSWORD = "123456";					//Password to connect to the BDD
-	private Connection connection;								//Object Connection
-	private Statement statement;								//Object Statement
-	private Query query;										//Object Query
+public class DAO {
+	private static String URL = "jdbc:mysql://10.113.129.9:3306/projetjava?autoReconnect=true&useSSL=false";
+	private static String LOGIN = "SuperUtilisateur";
+	private static String PASSWORD = "123456";
+	private Connection connection;
+	private Statement statement;
+	private Query query;
 
 	public DAO(){
-		this.connection = null;		//Initiate the connection to null
-		this.statement = null;		//Initiate the statement to null     
-		query = new Query();		//Initiate the object Query
+		this.connection = null;
+		this.statement = null;      
+		query = new Query();
 	}
 
-	public Boolean open() {				//Method which open the connection with the BDD
+	public Boolean open() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");		//Setting the driver for MySQL (JDBC)
-			this.connection = DriverManager.getConnection(DAO.URL, DAO.LOGIN, DAO.PASSWORD);	//Connection to the BDD
-			this.statement = this.connection.createStatement();									//Creation of the statement
+			Class.forName("com.mysql.jdbc.Driver");
+			this.connection = DriverManager.getConnection(DAO.URL, DAO.LOGIN, DAO.PASSWORD);
+			this.statement = this.connection.createStatement();
 		} catch (final ClassNotFoundException e) {
 			e.printStackTrace();
 			return false;
@@ -31,19 +31,19 @@ public class DAO {		//Class of connection with the BDD
 		return true;
 	}
 
-	public void close(){				//Method which close the connection to the BDD
+	public void close(){
 		try {
-			this.connection.close();	//Closing the connection
+			this.connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public String getMap(int level){	//Get the map with the level
+	public String getMap(int level){
 		try {
-			ResultSet rs = this.statement.executeQuery(query.getMapByLevel(level));		//Get the resultset of the query
-			if(rs.first()==true){						//Go to the first row
-				return rs.getString("CARTE");			//return the column "CARTE"
+			ResultSet rs = this.statement.executeQuery(query.getMapByLevel(level));
+			if(rs.first()==true){
+				return rs.getString("CARTE");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,21 +51,21 @@ public class DAO {		//Class of connection with the BDD
 		return "Failed";
 	}
 	
-	public void addName(String name, int score){			//Saving a party (name + score)
+	public void addName(String name, int score){
 		try {
-			this.statement.executeUpdate(query.addNameQuery(name, score));		//Execute query
+			this.statement.executeUpdate(query.addNameQuery(name, score));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public int getBestScore(int place){						//Get the score in the place 'place'
+	public int getBestScore(int place){
 		try {
-			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());		//Get the best score
-			if(rs.first()==true){				//Come to the first row
-				rs.absolute(place+1);			//Come to the row 'place' +1 (because place begin at 0)
+			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());
+			if(rs.first()==true){
+				rs.absolute(place+1);
 			}
-			return rs.getInt("SCORE");			//return the column "SCORE"
+			return rs.getInt("SCORE");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,13 +73,13 @@ public class DAO {		//Class of connection with the BDD
 		return 0;
 	}
 	
-	public String getNameBestScore(int place){				//Get the name in the place 'place'
+	public String getNameBestScore(int place){
 		try {
-			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());		//Get the best score
-			if(rs.first()==true){				//Come to the first row
-				rs.absolute(place+1);			//Come to the row 'place' +1 (because place begin at 0)
+			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());
+			if(rs.first()==true){
+				rs.absolute(place+1);
 			}
-			return rs.getString("PSEUDO");		//return the column "PSEUDO"
+			return rs.getString("PSEUDO");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

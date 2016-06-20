@@ -307,9 +307,10 @@ public class Model extends Observable implements IModel {			//Class model of the
 									this.score = this.score + 100;					//increase the score
 									System.out.println("Score : " + this.score);
 									this.purseList.get(i).setTAKEN(true);			//Set the state of the purse to TAKEN
-									this.elementsList.set(x+(20*y),this.lorann);
+									
 								}
 							}
+							this.elementsList.set(x+(20*y),this.lorann);
 						}
 					}
 					else{	//Else put Lorann
