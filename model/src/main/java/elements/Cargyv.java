@@ -1,31 +1,15 @@
 package elements;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Cargyv.
+ */
+@SuppressWarnings("unused")
 public class Cargyv extends Daemon {
-	private int TYPE = 9;
-	private int PosX;
-	private int PosY;
 	
-	public int getPosX() {
-		return PosX;
+		/** The type. */
+		private int TYPE = 9; //the "type" is used to associate a class with a sprite
+		
+		/** The penetrable. */
+		private boolean PENETRABLE = false; //The element can not be penetrated
 	}
-	
-	public void setPosX(int posX) {
-		PosX = posX;
-	}
-	
-	public int getPosY() {
-		return PosY;
-	}
-	
-	public void setPosY(int posY) {
-		PosY = posY;
-	}
-	
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
-	}
-}

@@ -1,41 +1,14 @@
 package elements;
 
-public class Hero extends Mobile{
-	private int TYPE = 5;
-	private boolean PENETRABLE = false;
-	private int PosX;
-	private int PosY;
-
-
-	public boolean getPENETRABLE() {
-		return PENETRABLE;
-	}
-
-	public void setPENETRABLE(boolean penetrable) {
-		PENETRABLE = penetrable;
-	}
-
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
-	}
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Hero.
+ */
+@SuppressWarnings("unused")
+public class Hero extends Mobile{ /** The type. */
+ //The class extends from Mobile
+	private int TYPE = 5; //the "type" is used to associate a class with a sprite
 	
-	public int getPosX() {
-		return PosX;
-	}
-	
-	public void setPosX(int posX) {
-		PosX = posX;
-	}
-	
-	public int getPosY() {
-		return PosY;
-	}
-	
-	public void setPosY(int posY) {
-		PosY = posY;
-	}
+	/** The penetrable. */
+	private boolean PENETRABLE = false; //The element can not be penetrated
 }

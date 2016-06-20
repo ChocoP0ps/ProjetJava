@@ -16,18 +16,36 @@ import javax.swing.JPanel;
 import contract.IElement;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewPanel.
+ */
 class ViewPanel extends JPanel implements Observer {				//Class JPanel which implements the interface Observer (Will be informed of the changes commit in the observable object)
 
-	private ViewFrame					viewFrame;			//ViewFrame object
+	/** The view frame. */
+				private ViewFrame					viewFrame;			//ViewFrame object
 
+	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;			//Serial version
 
+	/** The sprite lorann. */
 	Image spriteLorann;			//Sprite of the hero
+	
+	/** The sprite fire. */
 	Image spriteFire;			//Sprite of the fireball
+	
+	/** The name. */
 	String name;				//Name of the Player
+	
+	/** The first. */
 	int first;					//Verification of the hero's death
 	
 
+	/**
+	 * Instantiates a new view panel.
+	 *
+	 * @param viewFrame the view frame
+	 */
 	public ViewPanel(final ViewFrame viewFrame) {		//Constructor of the ViewPanel
 		this.first = 0;												//Setting the hero death to no
 		this.name = "";												//Setting the name to ""
@@ -40,19 +58,37 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 	}
 
 
+	/**
+	 * Gets the view frame.
+	 *
+	 * @return the view frame
+	 */
 	private ViewFrame getViewFrame() {								//Getter of the ViewFrame
 		return this.viewFrame;
 	}
 
+	/**
+	 * Sets the view frame.
+	 *
+	 * @param viewFrame the new view frame
+	 */
 	private void setViewFrame(final ViewFrame viewFrame) {			//Setter of the ViewFrame
 		this.viewFrame = viewFrame;
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	public void update(final Observable arg0, final Object arg1) {	//Update of the window (Observer interface)
 		this.repaint();
 	}
 	
+	/**
+	 * Prints the map.
+	 *
+	 * @param graphics the graphics
+	 */
 	public void printMap(Graphics graphics){						//Print the map on the window
 		ArrayList<IElement> elementsList = this.getViewFrame().getModel().getElementsList();		//Get the model's element's array
 		for(int y = 0; y<12; y++){
@@ -150,6 +186,9 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {			//Print the component of the Panel
 		this.name = this.viewFrame.getModel().getName();				//Setting the name with the model's attribute 'name'
@@ -176,7 +215,13 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 		graphics.drawString("Score : " + this.viewFrame.getModel().getScore(), 192, 800);			//Print "The score : " + The player's score at the bottom of the window
 	}
 
-	class AnimFire implements Runnable{				//Thread which change the fireball's sprite
+	/**
+	 * The Class AnimFire.
+	 */
+	class AnimFire implements Runnable{				/* (non-Javadoc)
+				 * @see java.lang.Runnable#run()
+				 */
+				//Thread which change the fireball's sprite
 		public void run() {
 			int n = 0;
 			while(true){				//Infinite loop
@@ -229,8 +274,14 @@ class ViewPanel extends JPanel implements Observer {				//Class JPanel which imp
 	}	
 	
 	
+	/**
+	 * The Class AnimLorann.
+	 */
 	class AnimLorann implements Runnable{		//Thread which change the Lorann's sprite
 
+		/* (non-Javadoc)
+		 * @see java.lang.Runnable#run()
+		 */
 		public void run() {
 			int n = 0;
 			while(true){					//Infinite loop

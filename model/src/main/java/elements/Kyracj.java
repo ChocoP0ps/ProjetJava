@@ -1,31 +1,14 @@
 package elements;
 
-public class Kyracj extends Daemon {
-	private int TYPE = 8;
-	private int PosX;
-	private int PosY;
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Kyracj.
+ */
+@SuppressWarnings("unused")
+public class Kyracj extends Daemon { /** The type. */
+ //The class extends from Daemon
+	private int TYPE = 8; //the "type" is used to associate a class with a sprite
 	
-	public int getPosX() {
-		return PosX;
-	}
-	
-	public void setPosX(int posX) {
-		PosX = posX;
-	}
-	
-	public int getPosY() {
-		return PosY;
-	}
-	
-	public void setPosY(int posY) {
-		PosY = posY;
-	}
-	
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
-	}
+	/** The penetrable. */
+	private boolean PENETRABLE = false; //The element can not be penetrated
 }

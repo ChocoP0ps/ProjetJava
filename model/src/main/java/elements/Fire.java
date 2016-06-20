@@ -1,22 +1,14 @@
 package elements;
 
-public class Fire extends Element {
-	private int TYPE = 7;
-	private boolean PENETRABLE = true;
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Fire.
+ */
+@SuppressWarnings("unused")
+public class Fire extends Element { /** The type. */
+ //The class extends from Element
+	private int TYPE = 7; //the "type" is used to associate a class with a sprite
 	
-	public boolean getPENETRABLE() {
-		return PENETRABLE;
-	}
-
-	public void setPENETRABLE(boolean penetrable) {
-		PENETRABLE = penetrable;
-	}
-
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
-	}
+	/** The penetrable. */
+	private boolean PENETRABLE = true; //The element can be penetrated
 }

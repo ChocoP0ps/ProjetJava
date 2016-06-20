@@ -6,29 +6,55 @@ import contract.IModel;
 import contract.IView;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
 public class Controller implements IController {
 
+	/** The view. */
 	private IView		view;			//Object view of the MVC
 
+	/** The model. */
 	private IModel	model;				//Object model of the MVC
 	
+	/** The first. */
 	private int first = 0;
 
 
+	/**
+	 * Instantiates a new controller.
+	 *
+	 * @param view the view
+	 * @param model the model
+	 */
 	public Controller(final IView view, final IModel model) {			//Constructor
 		this.setView(view);								//Setting the view of the MVC
 		this.setModel(model);							//Setting the model of the MVC
 		this.model.loadMap(this.model.getLevel());		//Load the first map
 	}
 
+	/**
+	 * Sets the view.
+	 *
+	 * @param view the new view
+	 */
 	private void setView(final IView view) {			//View's setter
 		this.view = view;
 	}
 
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
 	private void setModel(final IModel model) {			//Model's setter
 		this.model = model;
 	}
 
+	/* (non-Javadoc)
+	 * @see contract.IController#orderPerform(contract.ControllerOrder)
+	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {		//Listen the key pressing
 		switch (controllerOrder) {				//Switch of the different key
 			case Down:

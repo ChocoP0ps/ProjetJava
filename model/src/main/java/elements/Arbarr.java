@@ -1,31 +1,14 @@
 package elements;
 
-public class Arbarr extends Daemon{
-	private int TYPE = 10;
-	private int PosX;
-	private int PosY;
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Arbarr.
+ */
+@SuppressWarnings("unused")
+public class Arbarr extends Daemon{ /** The type. */
+ // The class Arbarr extends from daemons. Arbarr is one of the fourth monster in the game
+	private int TYPE = 10; //the "type" is used to associate a class with a sprite
 	
-	public int getPosX() {
-		return PosX;
-	}
-	
-	public void setPosX(int posX) {
-		PosX = posX;
-	}
-	
-	public int getPosY() {
-		return PosY;
-	}
-	
-	public void setPosY(int posY) {
-		PosY = posY;
-	}
-	
-	public int getTYPE() {
-		return TYPE;
-	}
-
-	public void setTYPE(int type) {
-		TYPE = type;
-	}
+	/** The penetrable. */
+	private boolean PENETRABLE = false; //The element can not be penetrated
 }

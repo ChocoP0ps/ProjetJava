@@ -1,33 +1,14 @@
 package elements;
 
-public class Daemon extends Mobile {
-
-	private boolean PENETRABLE = false;
-	private int PosX;
-	private int PosY;
-
-
-	public boolean getPENETRABLE() {
-		return PENETRABLE;
-	}
-
-	public void setPENETRABLE(boolean penetrable) {
-		PENETRABLE = penetrable;
-	}
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Daemon.
+ */
+@SuppressWarnings("unused")
+public class Daemon extends Mobile { //The class Daemon extends from Mobile
+	/** The Pos X. */
+	private int PosX; //Variable that corresponds to the x-axis position 
 	
-	public int getPosX() {
-		return PosX;
-	}
-	
-	public void setPosX(int posX) {
-		PosX = posX;
-	}
-	
-	public int getPosY() {
-		return PosY;
-	}
-	
-	public void setPosY(int posY) {
-		PosY = posY;
-	}
+	/** The Pos Y. */
+	private int PosY; //Variable that corresponds to the y-axis position
 }
