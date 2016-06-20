@@ -1,12 +1,7 @@
 package elements;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Wall.
- */
-public class Wall extends Element{
-	
-	/** The penetrable. */
+public abstract class Wall extends Element{ // The class Wall extends from Element
 	@SuppressWarnings("unused")
-	private boolean PENETRABLE = false;
+	private boolean PENETRABLE = false; //Boolean variable that correspond to the penetration of the element
+
 }
