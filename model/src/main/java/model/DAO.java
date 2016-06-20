@@ -7,13 +7,12 @@ public class DAO {
 	private static String LOGIN = "SuperUtilisateur";
 	private static String PASSWORD = "123456";
 	private Connection connection;
+	@SuppressWarnings("unused")
 	private Statement statement;
-	private Query query;
 
 	public DAO(){
 		this.connection = null;
-		this.statement = null;      
-		query = new Query();
+		this.statement = null;
 	}
 
 	public Boolean open() {
@@ -40,48 +39,67 @@ public class DAO {
 	}
 
 	public String getMap(int level){
+		String sql = "{call MapByLevel(?)}";
+		CallableStatement call;
 		try {
-			ResultSet rs = this.statement.executeQuery(query.getMapByLevel(level));
-			if(rs.first()==true){
-				return rs.getString("CARTE");
+			call = connection.prepareCall(sql);
+			call.setInt(1,level);
+			if(call.execute()){ 
+			    ResultSet resultat = call.getResultSet(); 
+				if(resultat.first()==true){
+					return resultat.getString("CARTE");
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 		return "Failed";
 	}
 	
 	public void addName(String name, int score){
+		String sql = "{call InsertByScore(?, ?)}";
+		CallableStatement call;
 		try {
-			this.statement.executeUpdate(query.addNameQuery(name, score));
+			call = connection.prepareCall(sql);
+			call.setString(1,name);
+			call.setInt(2, score);
+			call.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	public int getBestScore(int place){
+		String sql = "{call GetBestScore()}";
+		CallableStatement call;
 		try {
-			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());
-			if(rs.first()==true){
-				rs.absolute(place+1);
+			call = connection.prepareCall(sql);
+			if(call.execute()){ 
+			    ResultSet resultat = call.getResultSet(); 
+				if(resultat.first()==true){
+					resultat.absolute(place+1);
+					return resultat.getInt("SCORE");
+				}
 			}
-			return rs.getInt("SCORE");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		return 0;
 	}
 	
 	public String getNameBestScore(int place){
+		String sql = "{call GetBestScore()}";
+		CallableStatement call;
 		try {
-			ResultSet rs = this.statement.executeQuery(query.getNameByBestScore());
-			if(rs.first()==true){
-				rs.absolute(place+1);
+			call = connection.prepareCall(sql);
+			if(call.execute()){ 
+			    ResultSet resultat = call.getResultSet(); 
+				if(resultat.first()==true){
+					resultat.absolute(place+1);
+					return resultat.getString("PSEUDO");
+				}
 			}
-			return rs.getString("PSEUDO");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";
