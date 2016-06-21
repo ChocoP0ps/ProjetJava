@@ -1,6 +1,4 @@
-/**
- *
- */
+
 package model;
 
 import org.junit.After;
@@ -36,7 +34,8 @@ public class ModelTest {
 	}
 
 	@Test
-	public void testGetMap() {
+	public void getTYPE() { 
+		
 		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhbvnnnnnnnnsnnnnnnnnnvvnnbhbhhhhhhhhbhbnnvvnnnnvnnnnnnnnvnnnnvbhhbnvnnnnnnnnvnbhhbdnnbnvnnnnnnnnvnbncvbbnnnvnnnnnnnnvnnnbbbbhhhbnnnnnnnnbhhhbbvnmnnvnnnnnnnnvnnmnvbhhhhbhhhhhhhhbhhhhbvnnnmnnnnnnnnnnmnnnvbhhhhhhhhhhhhhhhhhhb", this.model.getMap());
 	}
 	
@@ -49,5 +48,6 @@ public class ModelTest {
 	public void setNextLevel(){
 		Assert.assertEquals(2,this.model.setNextLevel());
 		}
+	
 }
 
